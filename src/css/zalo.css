@@ -1,0 +1,146 @@
+/* ==========================================================================
+   Zalo Floating Button
+   ========================================================================== */
+
+.zalo-float {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Tooltip - positioned to the left of button */
+.zalo-tooltip {
+  background: var(--color-white);
+  color: var(--color-black);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all var(--duration-normal) var(--ease-out-quart);
+  pointer-events: none;
+  order: -1; /* Place tooltip before button */
+}
+
+.zalo-float:hover .zalo-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Main Button */
+.zalo-btn {
+  width: 60px;
+  height: 60px;
+  background: #0068FF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 104, 255, 0.4);
+  transition: all var(--duration-normal) var(--ease-out-quart);
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.zalo-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(0, 104, 255, 0.5);
+}
+
+.zalo-btn:active {
+  transform: scale(1.05);
+}
+
+/* Zalo Icon */
+.zalo-btn svg {
+  width: 32px;
+  height: 32px;
+  fill: white;
+}
+
+/* Pulse Animation */
+.zalo-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #0068FF;
+  animation: zaloPulse 2s ease-out infinite;
+  z-index: -1;
+}
+
+@keyframes zaloPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Notification Badge */
+.zalo-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 20px;
+  height: 20px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: var(--font-weight-bold);
+  color: white;
+  border: 2px solid white;
+  animation: zaloBadgeBounce 2s ease-in-out infinite;
+}
+
+@keyframes zaloBadgeBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .zalo-float {
+    bottom: var(--space-4);
+    right: var(--space-4);
+  }
+  
+  .zalo-btn {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .zalo-btn svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .zalo-tooltip {
+    display: none;
+  }
+}
+
+/* Hide when mobile menu is open */
+body.menu-open .zalo-float {
+  opacity: 0;
+  pointer-events: none;
+}

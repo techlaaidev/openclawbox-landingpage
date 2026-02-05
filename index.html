@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO -->
+  <title>OpenClawBox - AI Agent cho Doanh Nghiệp | Thiết Lập Sẵn, Sẵn Sàng Sử Dụng</title>
+  <meta name="description" content="OpenClawBox - AI Agent cho doanh nghiệp, thiết lập sẵn trên Mini PC. Tự động hóa Tài chính, Marketing, Sales 24/7. Chỉ 2.999.000₫.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="OpenClawBox - AI Agent cho Doanh Nghiệp">
+  <meta property="og:description" content="Thiết lập sẵn, sẵn sàng sử dụng. Tự động hóa Tài chính, Marketing, Sales 24/7.">
+  <meta property="og:image" content="/src/assets/images/product22.png">
+  <meta property="og:type" content="website">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="src/assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="src/assets/icons/favicon.svg">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="src/css/design-system.css">
+  <link rel="stylesheet" href="src/css/components.css">
+  <link rel="stylesheet" href="src/css/language.css">
+  <link rel="stylesheet" href="src/css/zalo.css">
+  <link rel="stylesheet" href="src/css/announcement.css">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-content">
+      <svg class="announcement-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+      </svg>
+      <span class="announcement-text" data-i18n="announcement.text">
+        <strong>Cộng đồng OpenClawBox</strong> — Đào tạo AI Agent miễn phí cho doanh nghiệp
+      </span>
+      <span class="announcement-divider"></span>
+      <a href="https://zalo.me/g/xxxxxxx" target="_blank" rel="noopener" class="announcement-cta">
+        <span data-i18n="announcement.cta">Tham gia nhóm Zalo</span>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+    <button class="announcement-close" id="closeAnnouncement" aria-label="Đóng">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="#" class="logo">OpenClawBox</a>
+        
+        <nav class="nav">
+          <a href="#features" class="nav-link" data-i18n="nav.features">Tính năng</a>
+          <a href="#specs" class="nav-link" data-i18n="nav.specs">Thông số</a>
+          <a href="#pricing" class="nav-link" data-i18n="nav.pricing">Giá</a>
+          <a href="#faq" class="nav-link" data-i18n="nav.faq">FAQ</a>
+          
+          <!-- Language Switcher -->
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="vi">VI</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+          
+          <a href="#pricing" class="btn btn-primary header-cta" data-i18n="nav.order">Đặt hàng</a>
+        </nav>
+        
+        <button class="menu-toggle" aria-label="Menu">
+          <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <nav class="mobile-nav">
+        <a href="#features" class="mobile-nav-link" data-i18n="nav.features">Tính năng</a>
+        <a href="#specs" class="mobile-nav-link" data-i18n="nav.specs">Thông số</a>
+        <a href="#pricing" class="mobile-nav-link" data-i18n="nav.pricing">Giá</a>
+        <a href="#faq" class="mobile-nav-link" data-i18n="nav.faq">FAQ</a>
+        <a href="#pricing" class="btn btn-primary btn-lg mt-8" style="width: 100%;" data-i18n="nav.order">Đặt hàng ngay</a>
+      </nav>
+      
+      <!-- Mobile Language Switcher -->
+      <div class="mobile-lang-switcher">
+        <button class="lang-btn active" data-lang="vi">Tiếng Việt</button>
+        <button class="lang-btn" data-lang="en">English</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-float hero-float-1"></div>
+    <div class="hero-float hero-float-2"></div>
+    
+    <div class="container">
+      <div class="hero-content">
+        <!-- Badge -->
+        <div class="hero-badge animate-fade-up">
+          <span class="hero-badge-dot"></span>
+          <span data-i18n="hero.badge">Plug & Play • Cắm điện là dùng</span>
+        </div>
+        
+        <!-- Title -->
+        <h1 class="hero-title animate-fade-up delay-1" data-i18n="hero.title">
+          OpenClawBox
+        </h1>
+        
+        <!-- Subtitle -->
+        <p class="hero-subtitle animate-fade-up delay-2" data-i18n="hero.subtitle">
+          AI Agent cho doanh nghiệp — Thiết lập sẵn trên Mini PC.<br>
+          Tài chính, Marketing, Sales — tất cả chạy 24/7.
+        </p>
+        
+        <!-- Price -->
+        <div class="hero-price animate-fade-up delay-3">
+          <div class="price-value" data-i18n="hero.price">2.999.000₫</div>
+          <div class="price-note" data-i18n="hero.price.note">Miễn phí vận chuyển toàn quốc</div>
+        </div>
+        
+        <!-- CTA -->
+        <div class="hero-cta animate-fade-up delay-4">
+          <a href="#pricing" class="btn btn-primary btn-lg">
+            <span data-i18n="hero.cta.order">Đặt hàng ngay</span>
+            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a href="#features" class="btn btn-secondary btn-lg" data-i18n="hero.cta.learn">Tìm hiểu thêm</a>
+        </div>
+        
+        <!-- Hero Image -->
+        <div class="hero-image animate-fade-up delay-5">
+          <img src="src/assets/images/product22.png" alt="OpenClawBox Dashboard">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-indicator-line"></div>
+    </div>
+  </section>
+
+  <!-- Value Props -->
+  <section class="section value-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="h2" data-i18n="value.title">Tại sao chọn OpenClawBox?</h2>
+        <p class="lead" data-i18n="value.subtitle">Một thiết bị nhỏ gọn, vận hành toàn bộ doanh nghiệp của bạn</p>
+      </div>
+      
+      <div class="grid grid-3 stagger">
+        <div class="value-card">
+          <div class="value-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="value-title" data-i18n="value.1.title">Thiết Lập Sẵn 100%</h3>
+          <p class="value-description" data-i18n="value.1.desc">Toàn bộ hệ thống AI Agent đã được cấu hình. Mở hộp, kết nối mạng — bắt đầu tự động hóa ngay lập tức.</p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <h3 class="value-title" data-i18n="value.2.title">AI Hiểu Doanh Nghiệp</h3>
+          <p class="value-description" data-i18n="value.2.desc">Được huấn luyện để hiểu quy trình kinh doanh. Đưa ra quyết định thông minh như một nhân viên thực thụ.</p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="value-title" data-i18n="value.3.title">Đầu Tư Một Lần</h3>
+          <p class="value-description" data-i18n="value.3.desc">Thay thế hàng chục công cụ SaaS và nhân sự. Vận hành 24/7 với chi phí cố định, không phí ẩn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Size -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="h2" data-i18n="size.title">Thiết Kế Tối Ưu</h2>
+        <p class="lead" data-i18n="size.subtitle">Kích thước nhỏ gọn, hiệu suất mạnh mẽ. Vận hành êm ái, tiết kiệm điện năng.</p>
+      </div>
+      
+      <div class="product-showcase reveal max-w-lg mx-auto">
+        <img src="src/assets/images/size.png" alt="OpenClawBox Size Comparison">
+        <div class="product-label" data-i18n="size.label">Thiết kế compact — Phù hợp mọi không gian làm việc</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="section bg-gray" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="h2" data-i18n="features.title">Khả Năng Của OpenClawBox</h2>
+        <p class="lead" data-i18n="features.subtitle">8 module AI Agent chuyên biệt — Tự động hóa toàn diện</p>
+      </div>
+      
+      <div class="grid grid-2 grid-4 stagger">
+        <div class="feature-grid-card">
+          <svg class="feature-grid-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+          <h4 class="feature-grid-title" data-i18n="features.1.title">Tài Chính Kế Toán</h4>
+          <p class="feature-grid-text" data-i18n="features.1.desc">Theo dõi thu chi, báo cáo thuế, phân tích doanh thu từ Shopee, Lazada, Tiki tự động</p>
+        </div>
+        
+        <div class="feature-grid-card">
+          <svg class="feature-grid-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+          </svg>
+          <h4 class="feature-grid-title" data-i18n="features.2.title">Sales & Marketing</h4>
+          <p class="feature-grid-text" data-i18n="features.2.desc">Tạo content, chạy quảng cáo A/B testing, quản lý Instagram, TikTok, Facebook</p>
+        </div>
+        
+        <div class="feature-grid-card">
+          <svg class="feature-grid-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <h4 class="feature-grid-title" data-i18n="features.3.title">Quản Lý Lịch Trình</h4>
+          <p class="feature-grid-text" data-i18n="features.3.desc">Lên lịch công việc, nhắc nhở quan trọng, tối ưu thời gian cho founder và team</p>
+        </div>
+        
+        <div class="feature-grid-card">
+          <svg class="feature-grid-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
+          </svg>
+          <h4 class="feature-grid-title" data-i18n="features.4.title">Social Listening</h4>
+          <p class="feature-grid-text" data-i18n="features.4.desc">Theo dõi xu hướng ngành, tin tức mới, gợi ý nội dung phù hợp với brand</p>
+        </div>
+        
+        <div class="feature-grid-card">
+          <svg class="feature-grid-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+          <h4 class="feature-grid-title" data-i18n="features.5.title">Đánh Giá Đối Tác</h4>
+          <p class="feature-grid-text" data-i18n="features.5.desc">Kiểm tra uy tín đối tác, phân tích reviews khách hàng, giảm thiểu rủi ro</p>
+        </div>
+        
+        <div class="feature-grid-card">
+          <svg class="feature-grid-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          <h4 class="feature-grid-title" data-i18n="features.6.title">A/B Testing Tự Động</h4>
+          <p class="feature-grid-text" data-i18n="features.6.desc">Tự động tạo và test hàng chục chiến dịch quảng cáo, tối ưu ROI khi bạn ngủ</p>
+        </div>
+        
+        <div class="feature-grid-card">
+          <svg class="feature-grid-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+          </svg>
+          <h4 class="feature-grid-title" data-i18n="features.7.title">Multi-Channel</h4>
+          <p class="feature-grid-text" data-i18n="features.7.desc">Quản lý Instagram, TikTok, Facebook, Shopee, Lazada, Tiki từ một nơi</p>
+        </div>
+        
+        <div class="feature-grid-card">
+          <svg class="feature-grid-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+          </svg>
+          <h4 class="feature-grid-title" data-i18n="features.8.title">Chatbot 24/7</h4>
+          <p class="feature-grid-text" data-i18n="features.8.desc">Tư vấn khách hàng, chốt đơn tự động, follow-up, chăm sóc sau bán không nghỉ</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specs -->
+  <section class="section" id="specs">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="h2" data-i18n="specs.title">Thông Số Kỹ Thuật</h2>
+        <p class="lead" data-i18n="specs.subtitle">Phần cứng được tối ưu cho các tác vụ AI Agent</p>
+      </div>
+      
+      <div class="max-w-lg mx-auto reveal">
+        <table class="specs-table">
+          <tr>
+            <td data-i18n="specs.processor">Bộ xử lý</td>
+            <td data-i18n="specs.processor.value">Intel Core i3-4130 Dual Core</td>
+          </tr>
+          <tr>
+            <td data-i18n="specs.ram">RAM</td>
+            <td data-i18n="specs.ram.value">8GB DDR3</td>
+          </tr>
+          <tr>
+            <td data-i18n="specs.storage">Ổ cứng</td>
+            <td data-i18n="specs.storage.value">128GB M.2 SSD</td>
+          </tr>
+          <tr>
+            <td data-i18n="specs.os">Hệ điều hành</td>
+            <td data-i18n="specs.os.value">OpenClawBox AI Agent</td>
+          </tr>
+          <tr>
+            <td data-i18n="specs.connectivity">Kết nối</td>
+            <td data-i18n="specs.connectivity.value">WiFi, Ethernet, USB 3.0</td>
+          </tr>
+          <tr>
+            <td data-i18n="specs.power">Nguồn điện</td>
+            <td data-i18n="specs.power.value">Adapter 65W (kèm theo)</td>
+          </tr>
+          <tr>
+            <td data-i18n="specs.size">Kích thước</td>
+            <td data-i18n="specs.size.value">Nhỏ gọn, phù hợp mọi không gian</td>
+          </tr>
+          <tr>
+            <td data-i18n="specs.noise">Độ ồn</td>
+            <td data-i18n="specs.noise.value">Im lặng, vận hành êm ái</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section bg-gray">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="h2" data-i18n="how.title">Bắt Đầu Sử Dụng</h2>
+        <p class="lead" data-i18n="how.subtitle">4 bước đơn giản để khởi chạy AI Agent</p>
+      </div>
+      
+      <div class="timeline stagger">
+        <div class="timeline-step">
+          <div class="timeline-number">1</div>
+          <h3 class="timeline-title" data-i18n="how.1.title">Nhận Hàng</h3>
+          <p class="timeline-text" data-i18n="how.1.desc">Kiểm tra thiết bị và phụ kiện. OpenClawBox AI Agent đã được thiết lập sẵn.</p>
+        </div>
+        
+        <div class="timeline-step">
+          <div class="timeline-number">2</div>
+          <h3 class="timeline-title" data-i18n="how.2.title">Kết Nối</h3>
+          <p class="timeline-text" data-i18n="how.2.desc">Cắm nguồn, khởi động. Kết nối WiFi hoặc cáp mạng Ethernet.</p>
+        </div>
+        
+        <div class="timeline-step">
+          <div class="timeline-number">3</div>
+          <h3 class="timeline-title" data-i18n="how.3.title">Cấu Hình</h3>
+          <p class="timeline-text" data-i18n="how.3.desc">Thiết lập thông tin doanh nghiệp để AI hiểu context và quy trình của bạn.</p>
+        </div>
+        
+        <div class="timeline-step">
+          <div class="timeline-number">4</div>
+          <h3 class="timeline-title" data-i18n="how.4.title">Vận Hành</h3>
+          <p class="timeline-text" data-i18n="how.4.desc">Kết nối các nền tảng và để OpenClawBox tự động hóa 24/7!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="h2" data-i18n="pricing.title">Đặt Hàng Ngay</h2>
+        <p class="lead" data-i18n="pricing.subtitle">Đầu tư một lần, sở hữu AI Agent vĩnh viễn</p>
+      </div>
+      
+      <div class="pricing-card reveal">
+        <h3 class="pricing-name" data-i18n="pricing.name">OpenClawBox</h3>
+        <div class="pricing-price" data-i18n="pricing.price">2.999.000₫</div>
+        <p class="pricing-period" data-i18n="pricing.period">Thanh toán một lần • Miễn phí vận chuyển</p>
+        
+        <ul class="pricing-features">
+          <li class="pricing-feature">
+            <svg class="pricing-feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="pricing-feature-text" data-i18n="pricing.feature.1">Mini PC Intel i3, 8GB RAM, 128GB SSD</span>
+          </li>
+          <li class="pricing-feature">
+            <svg class="pricing-feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="pricing-feature-text" data-i18n="pricing.feature.2">OpenClawBox AI Agent thiết lập sẵn</span>
+          </li>
+          <li class="pricing-feature">
+            <svg class="pricing-feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="pricing-feature-text" data-i18n="pricing.feature.3">8 module AI Agent chuyên biệt</span>
+          </li>
+          <li class="pricing-feature">
+            <svg class="pricing-feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="pricing-feature-text" data-i18n="pricing.feature.4">Tích hợp Shopee, Lazada, Tiki, Social</span>
+          </li>
+          <li class="pricing-feature">
+            <svg class="pricing-feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="pricing-feature-text" data-i18n="pricing.feature.5">Bảo hành phần cứng 12 tháng</span>
+          </li>
+          <li class="pricing-feature">
+            <svg class="pricing-feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="pricing-feature-text" data-i18n="pricing.feature.6">Hỗ trợ kỹ thuật miễn phí</span>
+          </li>
+          <li class="pricing-feature">
+            <svg class="pricing-feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="pricing-feature-text" data-i18n="pricing.feature.7">Cập nhật AI Agent trọn đời</span>
+          </li>
+        </ul>
+        
+        <a href="https://zalo.me/0868287651" class="btn btn-primary btn-lg" style="width: 100%;">
+          <span data-i18n="pricing.cta">Đặt hàng ngay</span>
+          <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+        
+        <p class="text-center text-muted mt-6 text-sm">
+          <span data-i18n="pricing.contact">Liên hệ:</span> <strong>Zalo 0868.287.651</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-gray" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="h2" data-i18n="faq.title">Câu Hỏi Thường Gặp</h2>
+        <p class="lead" data-i18n="faq.subtitle">Mọi thứ bạn cần biết về OpenClawBox</p>
+      </div>
+      
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq.1.q">OpenClawBox là gì?</span>
+            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content" data-i18n="faq.1.a">
+              OpenClawBox là một Mini PC tích hợp sẵn phần mềm AI Agent giúp tự động hóa toàn bộ doanh nghiệp. Từ tài chính, marketing, sales đến quản lý — tất cả đều được tự động hóa 24/7.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq.2.q">Tôi có cần biết kỹ thuật không?</span>
+            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content" data-i18n="faq.2.a">
+              Không cần! OpenClawBox được thiết kế "cắm điện là dùng được". Mọi thứ đã được cài sẵn, bạn chỉ cần trả lời vài câu hỏi setup ban đầu là có thể sử dụng ngay.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq.3.q">OpenClawBox phù hợp với ai?</span>
+            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content" data-i18n="faq.3.a">
+              OpenClawBox đặc biệt phù hợp với solopreneur, doanh nghiệp nhỏ (dưới 10 người), chủ shop online, content creator, và những ai muốn tự động hóa để tiết kiệm thời gian và chi phí.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq.4.q">Dữ liệu có an toàn không?</span>
+            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content" data-i18n="faq.4.a">
+              Có! OpenClawBox chạy trên máy tính của bạn, dữ liệu được lưu trữ local. Bạn hoàn toàn kiểm soát dữ liệu của mình. Mọi kết nối đều được mã hóa an toàn.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq.5.q">Có tích hợp với Shopee, Lazada không?</span>
+            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content" data-i18n="faq.5.a">
+              Có! OpenClawBox tích hợp với các sàn TMĐT phổ biến tại Việt Nam như Shopee, Lazada, Tiki. Ngoài ra còn tích hợp với Instagram, TikTok, Facebook, email, Zalo.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq.6.q">Bảo hành và hỗ trợ như thế nào?</span>
+            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content" data-i18n="faq.6.a">
+              OpenClawBox được bảo hành 12 tháng cho phần cứng. Hỗ trợ kỹ thuật và cập nhật phần mềm miễn phí trọn đời. Đổi trả trong 7 ngày nếu có lỗi từ nhà sản xuất.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq.7.q">Giao hàng mất bao lâu?</span>
+            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content" data-i18n="faq.7.a">
+              Miễn phí vận chuyển toàn quốc. Thời gian giao hàng: 2-3 ngày tại Hà Nội/HCM, 3-5 ngày tại các tỉnh thành khác.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2 class="cta-title" data-i18n="cta.title">Sẵn Sàng Tự Động Hóa?</h2>
+        <p class="cta-text" data-i18n="cta.text">
+          Tham gia cùng hàng trăm doanh nghiệp đang vận hành với OpenClawBox AI Agent.<br>
+          Thiết lập sẵn, sẵn sàng sử dụng — Chỉ 2.999.000₫
+        </p>
+        <div class="cta-buttons">
+          <a href="https://zalo.me/0868287651" class="btn btn-primary btn-lg">
+            <span data-i18n="cta.order">Đặt hàng ngay</span>
+            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a href="https://zalo.me/0868287651" class="btn btn-secondary btn-lg" data-i18n="cta.consult">Tư vấn miễn phí</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">OpenClawBox</div>
+          <p class="footer-tagline" data-i18n="footer.tagline">AI Agent cho doanh nghiệp. Thiết lập sẵn trên Mini PC. Tự động hóa 24/7.</p>
+        </div>
+        
+        <div class="footer-column">
+          <h4 data-i18n="footer.product">Sản Phẩm</h4>
+          <ul class="footer-links">
+            <li><a href="#features" class="footer-link" data-i18n="nav.features">Tính năng</a></li>
+            <li><a href="#specs" class="footer-link" data-i18n="nav.specs">Thông số</a></li>
+            <li><a href="#pricing" class="footer-link" data-i18n="nav.pricing">Giá</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4 data-i18n="footer.support">Hỗ Trợ</h4>
+          <ul class="footer-links">
+            <li><a href="#faq" class="footer-link" data-i18n="nav.faq">FAQ</a></li>
+            <li><a href="#" class="footer-link" data-i18n="footer.guide">Hướng dẫn</a></li>
+            <li><a href="https://zalo.me/0868287651" class="footer-link" data-i18n="footer.contact.link">Liên hệ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4 data-i18n="footer.contact">Liên Hệ</h4>
+          <ul class="footer-links">
+            <li class="footer-link">Zalo: <strong>0868.287.651</strong></li>
+            <li class="footer-link">Phone: <strong>0868.287.651</strong></li>
+            <li class="footer-link">Email: <strong>admin@techlaai.com</strong></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright" data-i18n="footer.copyright">© 2026 OpenClawBox. All rights reserved.</p>
+        
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Zalo Float Button -->
+  <div class="zalo-float">
+    <div class="zalo-tooltip" data-i18n="zalo.tooltip">Chat với chúng tôi</div>
+    <a href="https://zalo.me/0868287651" target="_blank" rel="noopener" class="zalo-btn" aria-label="Chat Zalo">
+      <span class="zalo-badge">1</span>
+      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm8.5 26.5c-.4.6-2.4 1.8-3.5 2-.9.2-2.1.3-3.4-.2-1.3-.5-2.5-1.1-3.6-2-3.5-2.9-5.8-6.5-6-6.8-.2-.3-1.5-2-1.5-3.8 0-1.8 1-2.7 1.3-3.1.4-.4.8-.5 1-.5h.8c.2 0 .6-.1.9.7.3.8 1.1 2.7 1.2 2.9.1.2.2.4.1.6-.1.3-.2.4-.4.6-.2.2-.4.5-.5.7-.2.2-.4.4-.2.8.2.4 1 1.6 2.1 2.6 1.4 1.3 2.6 1.7 3 1.9.4.2.6.1.8-.1.2-.2.9-1 1.1-1.4.2-.4.5-.3.8-.2.3.1 2 1 2.4 1.1.4.2.6.3.7.4.1.2.1 1-.3 1.8z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="src/js/i18n.js"></script>
+  <script src="src/js/main.js"></script>
+  <script>
+    // Announcement Bar
+    (function() {
+      const bar = document.getElementById('announcementBar');
+      const closeBtn = document.getElementById('closeAnnouncement');
+      const storageKey = 'openclawbox-announcement-closed';
+      
+      function showAnnouncement() {
+        bar.classList.remove('hidden');
+        document.body.classList.add('has-announcement');
+      }
+      
+      function hideAnnouncement() {
+        bar.classList.add('hidden');
+        document.body.classList.remove('has-announcement');
+        localStorage.setItem(storageKey, Date.now().toString());
+      }
+      
+      // Check if previously closed (within 7 days)
+      const closedAt = localStorage.getItem(storageKey);
+      if (closedAt) {
+        const daysSinceClosed = (Date.now() - parseInt(closedAt)) / (1000 * 60 * 60 * 24);
+        if (daysSinceClosed < 7) {
+          bar.classList.add('hidden');
+        } else {
+          localStorage.removeItem(storageKey);
+          showAnnouncement();
+        }
+      } else {
+        showAnnouncement();
+      }
+      
+      // Close button handler
+      closeBtn.addEventListener('click', hideAnnouncement);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw - Color Preview</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FFFFFF;
+            padding: 40px;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { margin-bottom: 40px; color: #0A0A0A; }
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+        
+        .color-card {
+            border: 1px solid #E5E5E5;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .color-swatch {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .color-info {
+            padding: 16px;
+            background: white;
+        }
+        
+        .color-name { font-weight: 600; margin-bottom: 4px; }
+        .color-code { font-family: monospace; color: #666; font-size: 14px; }
+        .color-usage { font-size: 12px; color: #999; margin-top: 8px; }
+        
+        /* Button Examples */
+        .button-examples {
+            margin-bottom: 60px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 16px;
+            margin-bottom: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+            background: #BD2D2D;
+            color: #FFFFFF;
+        }
+        
+        .btn-primary:hover {
+            background: #A02626;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(189, 45, 45, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #FFFFFF;
+            color: #0A0A0A;
+            border: 1px solid #E5E5E5;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #BD2D2D;
+            color: #BD2D2D;
+        }
+        
+        /* Comparison */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .comparison-card {
+            border: 1px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+        }
+        
+        .comparison-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .comparison-color {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .old { background: #2563EB; }
+        .new { background: #BD2D2D; }
+        
+        .comparison-text {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 OpenClaw - New Color Palette Preview</h1>
+        
+        <h2 style="margin-bottom: 20px;">Color Comparison</h2>
+        <div class="comparison">
+            <div class="comparison-card">
+                <div class="comparison-label">❌ Previous</div>
+                <div class="comparison-color old">
+                    #2563EB
+                </div>
+                <div class="comparison-text">
+                    <strong>Blue</strong><br>
+                    Trust, Technology<br>
+                    Contrast: 5.9:1
+                </div>
+            </div>
+            
+            <div class="comparison-card">
+                <div class="comparison-label">✅ New</div>
+                <div class="comparison-color new">
+                    #BD2D2D
+                </div>
+                <div class="comparison-text">
+                    <strong>Red</strong><br>
+                    Energy, Action, Bold<br>
+                    Contrast: 5.87:1 (WCAG AA Pass)
+                </div>
+            </div>
+        </div>
+        
+        <h2 style="margin-bottom: 20px;">Complete Color Palette</h2>
+        <div class="color-grid">
+            <div class="color-card">
+                <div class="color-swatch" style="background: #BD2D2D;">
+                    Primary
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Primary Red</div>
+                    <div class="color-code">#BD2D2D</div>
+                    <div class="color-usage">CTAs, links, focus states</div>
+                </div>
+            </div>
+            
+            <div class="color-card">
+                <div class="color-swatch" style="background: #A02626;">
+                    Hover
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Primary Hover</div>
+                    <div class="color-code">#A02626</div>
+                    <div class="color-usage">Button hover states</div>
+                </div>
+            </div>
+            
+            <div class="color-card">
+                <div class="color-swatch" style="background: #FEE2E2; color: #BD2D2D;">
+                    Light
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Primary Light</div>
+                    <div class="color-code">#FEE2E2</div>
+                    <div class="color-usage">Highlights, backgrounds</div>
+                </div>
+            </div>
+            
+            <div class="color-card">
+                <div class="color-swatch" style="background: #0A0A0A;">
+                    Black
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Black</div>
+                    <div class="color-code">#0A0A0A</div>
+                    <div class="color-usage">Primary text</div>
+                </div>
+            </div>
+            
+            <div class="color-card">
+                <div class="color-swatch" style="background: #666666;">
+                    Gray
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Gray 600</div>
+                    <div class="color-code">#666666</div>
+                    <div class="color-usage">Secondary text</div>
+                </div>
+            </div>
+            
+            <div class="color-card">
+                <div class="color-swatch" style="background: #E5E5E5; color: #0A0A0A;">
+                    Border
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Gray 200</div>
+                    <div class="color-code">#E5E5E5</div>
+                    <div class="color-usage">Borders, dividers</div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 style="margin-bottom: 20px;">Button Examples</h2>
+        <div class="button-examples">
+            <button class="btn btn-primary">Đặt hàng ngay</button>
+            <button class="btn btn-secondary">Tìm hiểu thêm</button>
+            <br>
+            <button class="btn btn-primary">Mua OpenClaw</button>
+            <button class="btn btn-secondary">Xem demo</button>
+        </div>
+        
+        <div style="margin-top: 60px; padding: 24px; background: #F5F5F5; border-radius: 8px;">
+            <h3 style="margin-bottom: 12px;">✅ Accessibility Check</h3>
+            <p style="margin-bottom: 8px;">
+                <strong>White text on #BD2D2D background</strong><br>
+                Contrast Ratio: <strong>5.87:1</strong>
+            </p>
+            <p style="margin-bottom: 8px;">
+                ✅ WCAG AA (Normal text ≥4.5:1): <strong>PASS</strong><br>
+                ✅ WCAG AA (Large text ≥3:1): <strong>PASS</strong><br>
+                ❌ WCAG AAA (Normal text ≥7:1): FAIL (but not required)
+            </p>
+        </div>
+        
+        <div style="margin-top: 40px; padding: 24px; background: #FEE2E2; border-radius: 8px; border: 2px solid #BD2D2D;">
+            <h3 style="margin-bottom: 12px; color: #BD2D2D;">🇻🇳 Cultural Significance</h3>
+            <p style="color: #666;">
+                Trong văn hóa Việt Nam, màu đỏ tượng trưng cho:<br>
+                • May mắn và thịnh vượng<br>
+                • Năng lượng và sức sống<br>
+                • Sự táo bạo và tự tin<br>
+                • Thành công và chiến thắng
+            </p>
+        </div>
+    </div>
+</body>
+</html>

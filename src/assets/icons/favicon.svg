@@ -1,0 +1,12 @@
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main Circle -->
+  <circle cx="60" cy="60" r="56" fill="#BD2D2D"/>
+  
+  <!-- O letter / Abstract claw mark -->
+  <path d="M60 28 C40 28 28 42 28 60 C28 78 40 92 60 92 C80 92 92 78 92 60 C92 42 80 28 60 28 Z M60 40 C73 40 80 49 80 60 C80 71 73 80 60 80 C47 80 40 71 40 60 C40 49 47 40 60 40 Z" fill="white"/>
+  
+  <!-- Claw accent -->
+  <path d="M70 50 L80 40" stroke="white" stroke-width="5" stroke-linecap="round"/>
+  <path d="M76 60 L88 55" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <path d="M72 72 L82 80" stroke="white" stroke-width="4" stroke-linecap="round"/>
+</svg>
