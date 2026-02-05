@@ -143,6 +143,7 @@ const translations = {
     "footer.contact.link": "Liên hệ",
     "footer.copyright": "© 2026 OpenClawBox. All rights reserved.",
     "zalo.tooltip": "Chat với chúng tôi",
+    "phone.tooltip": "Gọi ngay: 0868.287.651",
     
     // Announcement
     "announcement.text": "<strong>Cộng đồng OpenClawBox</strong> — Đào tạo AI Agent miễn phí cho doanh nghiệp",
@@ -288,6 +289,7 @@ const translations = {
     "footer.contact.link": "Contact Us",
     "footer.copyright": "© 2026 OpenClawBox. All rights reserved.",
     "zalo.tooltip": "Chat with us",
+    "phone.tooltip": "Call now: 0868.287.651",
     
     // Announcement
     "announcement.text": "<strong>OpenClawBox Community</strong> — Free AI Agent Training for Business",

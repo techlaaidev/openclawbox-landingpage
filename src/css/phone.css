@@ -1,0 +1,140 @@
+/* ==========================================================================
+   Phone Floating Button
+   ========================================================================== */
+
+.phone-float {
+  position: fixed;
+  bottom: calc(var(--space-6) + 70px); /* Above Zalo button */
+  right: var(--space-6);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Tooltip - positioned to the left of button */
+.phone-tooltip {
+  background: var(--color-white);
+  color: var(--color-black);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all var(--duration-normal) var(--ease-out-quart);
+  pointer-events: none;
+  order: -1;
+}
+
+.phone-float:hover .phone-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Main Button */
+.phone-btn {
+  width: 60px;
+  height: 60px;
+  background: #22C55E;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.4);
+  transition: all var(--duration-normal) var(--ease-out-quart);
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.phone-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(34, 197, 94, 0.5);
+}
+
+.phone-btn:active {
+  transform: scale(1.05);
+}
+
+/* Phone Icon */
+.phone-btn svg {
+  width: 28px;
+  height: 28px;
+  fill: white;
+  stroke: white;
+}
+
+/* Pulse Animation */
+.phone-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #22C55E;
+  animation: phonePulse 2s ease-out infinite;
+  animation-delay: 1s;
+  z-index: -1;
+}
+
+@keyframes phonePulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Ringing animation on icon */
+.phone-btn svg {
+  animation: phoneRing 3s ease-in-out infinite;
+}
+
+@keyframes phoneRing {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  5%, 15% {
+    transform: rotate(-15deg);
+  }
+  10%, 20% {
+    transform: rotate(15deg);
+  }
+  25% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .phone-float {
+    bottom: calc(var(--space-4) + 66px);
+    right: var(--space-4);
+  }
+  
+  .phone-btn {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .phone-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .phone-tooltip {
+    display: none;
+  }
+}
+
+/* Hide when mobile menu is open */
+body.menu-open .phone-float {
+  opacity: 0;
+  pointer-events: none;
+}
