@@ -19,12 +19,12 @@
 
 /* Offset header when announcement bar is visible */
 body.has-announcement .header {
-  top: 44px;
+  top: 52px;
 }
 
 @media (max-width: 767px) {
   body.has-announcement .header {
-    top: 72px;
+    top: 80px;
   }
 }
 
@@ -206,12 +206,12 @@ body.has-announcement .header {
 
 /* Extra padding when announcement bar is visible */
 body.has-announcement .hero {
-  padding-top: 164px; /* 120 + 44 */
+  padding-top: 172px; /* 120 + 52 */
 }
 
 @media (max-width: 767px) {
   body.has-announcement .hero {
-    padding-top: 192px; /* 120 + 72 */
+    padding-top: 200px; /* 120 + 80 */
   }
 }
 

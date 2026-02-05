@@ -1,0 +1,28 @@
+# OpenClawBox Robots.txt
+# https://openclawbox.vn/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://openclawbox.vn/sitemap.xml
+
+# Disallow admin/private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+
+# Allow all crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /

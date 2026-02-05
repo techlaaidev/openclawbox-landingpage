@@ -1,0 +1,91 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0A0A0A"/>
+  
+  <!-- Subtle gradient overlay -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#BD2D2D" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#0A0A0A" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E5E5E5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="1000" cy="150" r="200" fill="#BD2D2D" fill-opacity="0.1"/>
+  <circle cx="200" cy="500" r="150" fill="#BD2D2D" fill-opacity="0.05"/>
+  
+  <!-- Logo/Brand -->
+  <text x="100" y="180" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="700" fill="white">
+    OpenClawBox
+  </text>
+  
+  <!-- Red accent line -->
+  <rect x="100" y="200" width="120" height="6" rx="3" fill="#BD2D2D"/>
+  
+  <!-- Tagline -->
+  <text x="100" y="290" font-family="system-ui, -apple-system, sans-serif" font-size="42" font-weight="500" fill="white">
+    AI Agent cho Doanh Nghiệp
+  </text>
+  
+  <!-- Description -->
+  <text x="100" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#A3A3A3">
+    Thiết lập sẵn trên Mini PC
+  </text>
+  <text x="100" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#A3A3A3">
+    Tự động hóa Tài chính, Marketing, Sales 24/7
+  </text>
+  
+  <!-- Price badge -->
+  <rect x="100" y="450" width="280" height="70" rx="35" fill="#BD2D2D"/>
+  <text x="240" y="498" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="700" fill="white" text-anchor="middle">
+    2.999.000₫
+  </text>
+  
+  <!-- Free shipping note -->
+  <text x="400" y="495" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#A3A3A3">
+    Miễn phí vận chuyển toàn quốc
+  </text>
+  
+  <!-- Features icons row -->
+  <g transform="translate(100, 550)">
+    <rect width="160" height="40" rx="20" fill="rgba(255,255,255,0.1)"/>
+    <text x="80" y="27" font-family="system-ui, sans-serif" font-size="14" fill="white" text-anchor="middle">Plug &amp; Play</text>
+  </g>
+  <g transform="translate(280, 550)">
+    <rect width="160" height="40" rx="20" fill="rgba(255,255,255,0.1)"/>
+    <text x="80" y="27" font-family="system-ui, sans-serif" font-size="14" fill="white" text-anchor="middle">8 AI Modules</text>
+  </g>
+  <g transform="translate(460, 550)">
+    <rect width="200" height="40" rx="20" fill="rgba(255,255,255,0.1)"/>
+    <text x="100" y="27" font-family="system-ui, sans-serif" font-size="14" fill="white" text-anchor="middle">Bảo hành 12 tháng</text>
+  </g>
+  
+  <!-- Product illustration placeholder (right side) -->
+  <g transform="translate(750, 150)">
+    <!-- Mini PC box shape -->
+    <rect x="50" y="100" width="300" height="200" rx="20" fill="#1A1A1A" stroke="#333" stroke-width="2"/>
+    <rect x="70" y="120" width="260" height="140" rx="10" fill="#0A0A0A"/>
+    
+    <!-- Screen content -->
+    <rect x="85" y="135" width="100" height="10" rx="5" fill="#BD2D2D"/>
+    <rect x="85" y="155" width="150" height="8" rx="4" fill="#333"/>
+    <rect x="85" y="173" width="120" height="8" rx="4" fill="#333"/>
+    <rect x="85" y="191" width="80" height="8" rx="4" fill="#333"/>
+    
+    <!-- Chart bars -->
+    <rect x="250" y="200" width="20" height="50" rx="4" fill="#BD2D2D" fill-opacity="0.6"/>
+    <rect x="280" y="180" width="20" height="70" rx="4" fill="#BD2D2D" fill-opacity="0.8"/>
+    <rect x="310" y="160" width="20" height="90" rx="4" fill="#BD2D2D"/>
+    
+    <!-- LED indicator -->
+    <circle cx="80" cy="285" r="5" fill="#22C55E"/>
+    
+    <!-- Glow effect -->
+    <ellipse cx="200" cy="320" rx="150" ry="20" fill="#BD2D2D" fill-opacity="0.2"/>
+  </g>
+</svg>
