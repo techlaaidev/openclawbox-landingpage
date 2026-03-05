@@ -66,17 +66,17 @@ const translations = {
     "specs.title": "Thông Số Kỹ Thuật",
     "specs.subtitle": "Phần cứng được tối ưu cho các tác vụ AI Agent",
     "specs.processor": "Bộ xử lý",
-    "specs.processor.value": "Intel Core i3-4130 Dual Core",
+    "specs.processor.value": "Intel® Celeron® J1800 Dual Core",
     "specs.ram": "Bộ nhớ",
-    "specs.ram.value": "8GB DDR3",
+    "specs.ram.value": "4GB",
     "specs.storage": "Lưu trữ",
-    "specs.storage.value": "128GB M.2 SSD",
+    "specs.storage.value": "32GB mSATA",
     "specs.os": "Phần mềm",
     "specs.os.value": "Windows + OpenClawBox AI Agent",
     "specs.connectivity": "Kết nối",
-    "specs.connectivity.value": "WiFi, Ethernet, USB 3.0",
+    "specs.connectivity.value": "Ethernet, USB 3.0, USB 2.0",
     "specs.power": "Nguồn điện",
-    "specs.power.value": "Adapter 65W (bao gồm)",
+    "specs.power.value": "12V 2.5A (bao gồm)",
     "specs.size": "Kích thước",
     "specs.size.value": "Ultra-compact, tiết kiệm không gian",
     "specs.noise": "Độ ồn",
@@ -100,7 +100,7 @@ const translations = {
     "pricing.name": "OpenClawBox",
     "pricing.price": "2.999.000₫",
     "pricing.period": "Thanh toán một lần • Miễn phí vận chuyển",
-    "pricing.feature.1": "Mini PC Intel i3, 8GB RAM, 128GB SSD",
+    "pricing.feature.1": "Mini PC Intel Celeron J1800, 4GB RAM, 32GB mSATA",
     "pricing.feature.2": "OpenClawBox AI Agent thiết lập sẵn",
     "pricing.feature.3": "11 module AI Agent chuyên biệt",
     "pricing.feature.4": "Tích hợp Shopee, Lazada, Tiki, Social",
@@ -146,8 +146,13 @@ const translations = {
     "phone.tooltip": "Gọi ngay: 0868.287.651",
     
     // Announcement
-    "announcement.text": "<strong>Cộng đồng OpenClawBox</strong> — Đào tạo AI Agent miễn phí cho doanh nghiệp",
-    "announcement.cta": "Tham gia nhóm Zalo"
+    "announcement.text": "<strong>Nhận tài liệu OpenClaw MIỄN PHÍ</strong> — Giải đáp thắc mắc cộng đồng số 1 OpenClaw",
+    "announcement.cta": "Tham gia ngay",
+    
+    // Support
+    "support.title": "Hỗ Trợ Cài Đặt & Tư Vấn Setup Luồng",
+    "support.desc": "Đội ngũ kỹ thuật hỗ trợ cài đặt miễn phí. Tư vấn thiết lập workflow phù hợp với doanh nghiệp của bạn.",
+    "support.cta": "Tham gia nhóm hỗ trợ"
   },
   
   en: {
@@ -212,17 +217,17 @@ const translations = {
     "specs.title": "Technical Specifications",
     "specs.subtitle": "Hardware optimized for AI Agent workloads",
     "specs.processor": "Processor",
-    "specs.processor.value": "Intel Core i3-4130 Dual Core",
+    "specs.processor.value": "Intel® Celeron® J1800 Dual Core",
     "specs.ram": "Memory",
-    "specs.ram.value": "8GB DDR3",
+    "specs.ram.value": "4GB",
     "specs.storage": "Storage",
-    "specs.storage.value": "128GB M.2 SSD",
+    "specs.storage.value": "32GB mSATA",
     "specs.os": "Software",
     "specs.os.value": "Windows + OpenClawBox AI Agent",
     "specs.connectivity": "Connectivity",
-    "specs.connectivity.value": "WiFi, Ethernet, USB 3.0",
+    "specs.connectivity.value": "Ethernet, USB 3.0, USB 2.0",
     "specs.power": "Power",
-    "specs.power.value": "65W Adapter (included)",
+    "specs.power.value": "12V 2.5A (included)",
     "specs.size": "Size",
     "specs.size.value": "Ultra-compact, space-saving",
     "specs.noise": "Noise Level",
@@ -246,7 +251,7 @@ const translations = {
     "pricing.name": "OpenClawBox",
     "pricing.price": "2,999,000₫",
     "pricing.period": "One-time payment • Free shipping",
-    "pricing.feature.1": "Mini PC Intel i3, 8GB RAM, 128GB SSD",
+    "pricing.feature.1": "Mini PC Intel Celeron J1800, 4GB RAM, 32GB mSATA",
     "pricing.feature.2": "OpenClawBox AI Agent pre-configured",
     "pricing.feature.3": "11 specialized AI Agent modules",
     "pricing.feature.4": "Integrates Shopee, Lazada, Tiki, Social",
@@ -292,8 +297,13 @@ const translations = {
     "phone.tooltip": "Call now: 0868.287.651",
     
     // Announcement
-    "announcement.text": "<strong>OpenClawBox Community</strong> — Free AI Agent Training for Business",
-    "announcement.cta": "Join Zalo Group"
+    "announcement.text": "<strong>Get FREE OpenClaw Documentation</strong> — Join the #1 OpenClaw Community",
+    "announcement.cta": "Join Now",
+    
+    // Support
+    "support.title": "Installation Support & Workflow Setup Consulting",
+    "support.desc": "Free installation support from our technical team. Workflow setup consulting tailored to your business.",
+    "support.cta": "Join Support Group"
   }
 };
 
