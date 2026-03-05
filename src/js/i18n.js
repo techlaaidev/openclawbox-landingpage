@@ -11,7 +11,7 @@ const translations = {
     "nav.pricing": "Giá",
     "nav.faq": "FAQ",
     "nav.order": "Đặt hàng",
-    
+
     // Hero
     "hero.badge": "Plug & Play • Sẵn sàng sử dụng",
     "hero.title": "OpenClawBox",
@@ -20,7 +20,7 @@ const translations = {
     "hero.price.note": "Miễn phí vận chuyển toàn quốc",
     "hero.cta.order": "Đặt hàng ngay",
     "hero.cta.learn": "Tìm hiểu thêm",
-    
+
     // Value Props
     "value.title": "Tại sao chọn OpenClawBox?",
     "value.subtitle": "Giải pháp AI Agent hoàn chỉnh, sẵn sàng vận hành doanh nghiệp của bạn",
@@ -30,12 +30,12 @@ const translations = {
     "value.2.desc": "Được huấn luyện để hiểu quy trình kinh doanh. Đưa ra quyết định thông minh như một nhân viên thực thụ.",
     "value.3.title": "Đầu Tư Một Lần",
     "value.3.desc": "Thay thế hàng chục công cụ SaaS và nhân sự. Vận hành 24/7 với chi phí cố định, không phí ẩn.",
-    
+
     // Product Size
     "size.title": "Thiết Kế Tối Ưu",
     "size.subtitle": "Kích thước nhỏ gọn, hiệu suất mạnh mẽ. Vận hành êm ái, tiết kiệm điện năng.",
     "size.label": "Thiết kế compact — Phù hợp mọi không gian làm việc",
-    
+
     // Features
     "features.title": "Khả Năng Của OpenClawBox",
     "features.subtitle": "11 module AI Agent chuyên biệt — Tự động hóa toàn diện mọi nghiệp vụ",
@@ -61,7 +61,7 @@ const translations = {
     "features.10.desc": "Theo dõi, cào và phân tích dữ liệu đối thủ trên Facebook, Website. Báo cáo chiến lược cạnh tranh.",
     "features.11.title": "N8N Automation",
     "features.11.desc": "AI tự động tạo workflow N8N theo yêu cầu. Kết nối hàng trăm ứng dụng. Mở rộng khả năng không giới hạn.",
-    
+
     // Specs
     "specs.title": "Thông Số Kỹ Thuật",
     "specs.subtitle": "Phần cứng được tối ưu cho các tác vụ AI Agent",
@@ -81,7 +81,7 @@ const translations = {
     "specs.size.value": "Ultra-compact, tiết kiệm không gian",
     "specs.noise": "Độ ồn",
     "specs.noise.value": "Vận hành im lặng",
-    
+
     // How it works
     "how.title": "Bắt Đầu Sử Dụng",
     "how.subtitle": "4 bước đơn giản để khởi chạy AI Agent",
@@ -93,7 +93,7 @@ const translations = {
     "how.3.desc": "Thiết lập thông tin doanh nghiệp để AI hiểu context và quy trình của bạn.",
     "how.4.title": "Vận Hành",
     "how.4.desc": "Kết nối các nền tảng và để OpenClawBox tự động hóa 24/7!",
-    
+
     // Pricing
     "pricing.title": "Đặt Hàng Ngay",
     "pricing.subtitle": "Đầu tư một lần, sở hữu AI Agent vĩnh viễn",
@@ -109,7 +109,7 @@ const translations = {
     "pricing.feature.7": "Cập nhật AI Agent trọn đời",
     "pricing.cta": "Đặt hàng ngay",
     "pricing.contact": "Liên hệ:",
-    
+
     // FAQ
     "faq.title": "Câu Hỏi Thường Gặp",
     "faq.subtitle": "Giải đáp mọi thắc mắc về OpenClawBox",
@@ -124,16 +124,16 @@ const translations = {
     "faq.5.q": "Có tích hợp với các sàn TMĐT không?",
     "faq.5.a": "Có! OpenClawBox tích hợp native với Shopee, Lazada, Tiki và các sàn TMĐT phổ biến. Ngoài ra còn hỗ trợ Instagram, TikTok, Facebook, Zalo, Email và nhiều nền tảng khác.",
     "faq.6.q": "Chính sách bảo hành và hỗ trợ?",
-    "faq.6.a": "Bảo hành phần cứng 12 tháng. Hỗ trợ kỹ thuật và cập nhật phần mềm AI Agent miễn phí trọn đời. Đổi trả trong 7 ngày nếu phát sinh lỗi từ nhà sản xuất.",
+    "faq.6.a": "Bảo hành phần cứng 1 tháng. Có cộng đồng hỗ trợ kỹ thuật và cập nhật phần mềm AI Agent miễn phí trọn đời. Đổi trả trong 7 ngày nếu phát sinh lỗi từ nhà sản xuất.",
     "faq.7.q": "Thời gian giao hàng?",
     "faq.7.a": "Miễn phí vận chuyển toàn quốc. Giao hàng: 2-3 ngày (Hà Nội/HCM), 3-5 ngày (các tỉnh thành khác).",
-    
+
     // CTA
     "cta.title": "Sẵn Sàng Tự Động Hóa?",
     "cta.text": "Tham gia cùng hàng trăm doanh nghiệp đang vận hành với OpenClawBox AI Agent.<br>Thiết lập sẵn, sẵn sàng sử dụng — Chỉ 2.999.000₫",
     "cta.order": "Đặt hàng ngay",
     "cta.consult": "Tư vấn miễn phí",
-    
+
     // Footer
     "footer.tagline": "AI Agent cho doanh nghiệp. Thiết lập sẵn trên Mini PC. Tự động hóa 24/7.",
     "footer.product": "Sản Phẩm",
@@ -144,17 +144,17 @@ const translations = {
     "footer.copyright": "© 2026 OpenClawBox. All rights reserved.",
     "zalo.tooltip": "Chat với chúng tôi",
     "phone.tooltip": "Gọi ngay: 0868.287.651",
-    
+
     // Announcement
     "announcement.text": "<strong>Nhận tài liệu OpenClaw MIỄN PHÍ</strong> — Giải đáp thắc mắc cộng đồng số 1 OpenClaw",
     "announcement.cta": "Tham gia ngay",
-    
+
     // Support
     "support.title": "Hỗ Trợ Cài Đặt & Tư Vấn Setup Luồng",
     "support.desc": "Đội ngũ kỹ thuật hỗ trợ cài đặt miễn phí. Tư vấn thiết lập workflow phù hợp với doanh nghiệp của bạn.",
     "support.cta": "Tham gia nhóm hỗ trợ"
   },
-  
+
   en: {
     // Header
     "nav.features": "Features",
@@ -162,7 +162,7 @@ const translations = {
     "nav.pricing": "Pricing",
     "nav.faq": "FAQ",
     "nav.order": "Order Now",
-    
+
     // Hero
     "hero.badge": "Plug & Play • Ready to Deploy",
     "hero.title": "OpenClawBox",
@@ -171,7 +171,7 @@ const translations = {
     "hero.price.note": "Free shipping nationwide",
     "hero.cta.order": "Order Now",
     "hero.cta.learn": "Learn More",
-    
+
     // Value Props
     "value.title": "Why OpenClawBox?",
     "value.subtitle": "Complete AI Agent solution, ready to run your business",
@@ -181,12 +181,12 @@ const translations = {
     "value.2.desc": "Trained to understand business processes. Makes intelligent decisions like a real employee.",
     "value.3.title": "One-Time Investment",
     "value.3.desc": "Replace dozens of SaaS tools and staff. 24/7 operation with fixed cost, no hidden fees.",
-    
+
     // Product Size
     "size.title": "Optimized Design",
     "size.subtitle": "Compact size, powerful performance. Silent operation, energy efficient.",
     "size.label": "Compact design — Fits any workspace",
-    
+
     // Features
     "features.title": "OpenClawBox Capabilities",
     "features.subtitle": "11 specialized AI Agent modules — Complete business automation",
@@ -212,7 +212,7 @@ const translations = {
     "features.10.desc": "Monitor, scrape and analyze competitor data on Facebook, Websites. Competitive strategy reports.",
     "features.11.title": "N8N Automation",
     "features.11.desc": "AI auto-creates N8N workflows on demand. Connect hundreds of apps. Unlimited expansion capabilities.",
-    
+
     // Specs
     "specs.title": "Technical Specifications",
     "specs.subtitle": "Hardware optimized for AI Agent workloads",
@@ -232,7 +232,7 @@ const translations = {
     "specs.size.value": "Ultra-compact, space-saving",
     "specs.noise": "Noise Level",
     "specs.noise.value": "Silent operation",
-    
+
     // How it works
     "how.title": "Getting Started",
     "how.subtitle": "4 simple steps to launch your AI Agent",
@@ -244,7 +244,7 @@ const translations = {
     "how.3.desc": "Set up business info so AI understands your context and workflows.",
     "how.4.title": "Operate",
     "how.4.desc": "Connect your platforms and let OpenClawBox automate 24/7!",
-    
+
     // Pricing
     "pricing.title": "Order Now",
     "pricing.subtitle": "One-time investment, own your AI Agent forever",
@@ -260,7 +260,7 @@ const translations = {
     "pricing.feature.7": "Lifetime AI Agent updates",
     "pricing.cta": "Order Now",
     "pricing.contact": "Contact:",
-    
+
     // FAQ
     "faq.title": "Frequently Asked Questions",
     "faq.subtitle": "Everything you need to know about OpenClawBox",
@@ -275,16 +275,16 @@ const translations = {
     "faq.5.q": "Does it integrate with e-commerce platforms?",
     "faq.5.a": "Yes! OpenClawBox natively integrates with Shopee, Lazada, Tiki and popular e-commerce platforms. Also supports Instagram, TikTok, Facebook, Zalo, Email and many more.",
     "faq.6.q": "What about warranty and support?",
-    "faq.6.a": "12-month hardware warranty. Free technical support and lifetime AI Agent software updates. 7-day return if manufacturer defects occur.",
+    "faq.6.a": "1-month hardware warranty. Community technical support and lifetime free AI Agent software updates. 7-day return if manufacturer defects occur.",
     "faq.7.q": "Delivery time?",
     "faq.7.a": "Free shipping nationwide. Delivery: 2-3 days (Hanoi/HCM), 3-5 days (other provinces).",
-    
+
     // CTA
     "cta.title": "Ready to Automate?",
     "cta.text": "Join hundreds of businesses operating with OpenClawBox AI Agent.<br>Pre-configured, ready to deploy — Only 2,999,000₫",
     "cta.order": "Order Now",
     "cta.consult": "Free Consultation",
-    
+
     // Footer
     "footer.tagline": "AI Agent for Business. Pre-configured on Mini PC. 24/7 Automation.",
     "footer.product": "Product",
@@ -295,11 +295,11 @@ const translations = {
     "footer.copyright": "© 2026 OpenClawBox. All rights reserved.",
     "zalo.tooltip": "Chat with us",
     "phone.tooltip": "Call now: 0868.287.651",
-    
+
     // Announcement
     "announcement.text": "<strong>Get FREE OpenClaw Documentation</strong> — Join the #1 OpenClaw Community",
     "announcement.cta": "Join Now",
-    
+
     // Support
     "support.title": "Installation Support & Workflow Setup Consulting",
     "support.desc": "Free installation support from our technical team. Workflow setup consulting tailored to your business.",
@@ -318,39 +318,39 @@ const t = (key) => {
 // Switch language with animation
 const switchLanguage = (lang) => {
   if (lang === currentLang) return;
-  
+
   // Store preference
   currentLang = lang;
   localStorage.setItem('openclawbox-lang', lang);
-  
+
   // Update button states
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
-  
+
   // Get all translatable elements
   const elements = document.querySelectorAll('[data-i18n]');
-  
+
   // Animate out
   elements.forEach(el => {
     el.style.transition = 'opacity 0.25s ease-out, transform 0.25s ease-out';
     el.style.opacity = '0';
     el.style.transform = 'translateY(-8px)';
   });
-  
+
   // Update content and animate in
   setTimeout(() => {
     elements.forEach(el => {
       const key = el.dataset.i18n;
       const translation = t(key);
-      
+
       if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
         el.placeholder = translation;
       } else {
         el.innerHTML = translation;
       }
     });
-    
+
     // Animate in
     requestAnimationFrame(() => {
       elements.forEach(el => {
@@ -359,7 +359,7 @@ const switchLanguage = (lang) => {
       });
     });
   }, 250);
-  
+
   // Update HTML lang attribute
   document.documentElement.lang = lang;
 };
@@ -370,20 +370,20 @@ const initLanguage = () => {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
     const translation = t(key);
-    
+
     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
       el.placeholder = translation;
     } else {
       el.innerHTML = translation;
     }
   });
-  
+
   // Set active button
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === currentLang);
     btn.addEventListener('click', () => switchLanguage(btn.dataset.lang));
   });
-  
+
   // Set HTML lang
   document.documentElement.lang = currentLang;
 };
