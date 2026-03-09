@@ -1,0 +1,452 @@
+/**
+ * OpenClawBox Order Modal v2.0 - Premium Design
+ * Modal overlay + form styling + success state
+ */
+
+/* ==========================================================================
+   Modal Overlay
+   ========================================================================== */
+
+.order-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--duration-slow) var(--ease-out-quart);
+}
+
+.order-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ==========================================================================
+   Modal Container
+   ========================================================================== */
+
+.order-modal {
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  background: var(--color-white);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-2xl);
+  overflow-y: auto;
+  transform: translateY(30px) scale(0.95);
+  transition: transform var(--duration-slow) var(--ease-out-expo);
+  position: relative;
+}
+
+.order-modal-overlay.active .order-modal {
+  transform: translateY(0) scale(1);
+}
+
+/* Scrollbar inside modal */
+.order-modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.order-modal::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border-radius: var(--radius-full);
+}
+
+/* ==========================================================================
+   Modal Header
+   ========================================================================== */
+
+.order-modal-header {
+  padding: var(--space-8) var(--space-8) 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.order-modal-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-black);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.order-modal-subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+  margin-top: var(--space-1);
+}
+
+.order-modal-close {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-gray-100);
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  color: var(--color-gray-600);
+  transition: all var(--duration-fast) var(--ease-out-quart);
+}
+
+.order-modal-close:hover {
+  background: var(--color-gray-200);
+  color: var(--color-black);
+}
+
+.order-modal-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ==========================================================================
+   Modal Body / Form
+   ========================================================================== */
+
+.order-modal-body {
+  padding: var(--space-6) var(--space-8) var(--space-8);
+}
+
+.order-form-group {
+  margin-bottom: var(--space-5);
+}
+
+.order-form-label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-700);
+  margin-bottom: var(--space-2);
+}
+
+.order-form-label .required {
+  color: var(--color-primary);
+  margin-left: 2px;
+}
+
+.order-form-input {
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-black);
+  background: var(--color-white);
+  border: 1.5px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  outline: none;
+  transition: all var(--duration-fast) var(--ease-out-quart);
+}
+
+.order-form-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.1);
+}
+
+.order-form-input::placeholder {
+  color: var(--color-gray-400);
+}
+
+.order-form-input.error {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.08);
+}
+
+textarea.order-form-input {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ==========================================================================
+   Tier Selector
+   ========================================================================== */
+
+.order-tier-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.order-tier-option {
+  position: relative;
+}
+
+.order-tier-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.order-tier-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-4) var(--space-3);
+  background: var(--color-gray-50);
+  border: 1.5px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out-quart);
+  text-align: center;
+}
+
+.order-tier-label:hover {
+  border-color: var(--color-gray-400);
+}
+
+.order-tier-option input:checked + .order-tier-label {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+  box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.08);
+}
+
+.order-tier-name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-black);
+  margin-bottom: var(--space-1);
+}
+
+.order-tier-price {
+  font-size: var(--text-xs);
+  color: var(--color-gray-500);
+}
+
+/* ==========================================================================
+   Ref Code Badge
+   ========================================================================== */
+
+.order-ref-badge {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-5);
+  font-size: var(--text-sm);
+  color: #065F46;
+}
+
+.order-ref-badge.visible {
+  display: flex;
+}
+
+.order-ref-badge svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Submit Button
+   ========================================================================== */
+
+.order-submit-btn {
+  width: 100%;
+  padding: var(--space-5) var(--space-8);
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-white);
+  background: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out-quart);
+  box-shadow: 0 2px 8px rgba(var(--color-primary-rgb), 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.order-submit-btn:hover {
+  background: var(--color-primary-hover);
+  box-shadow: 0 8px 24px rgba(var(--color-primary-rgb), 0.35);
+  transform: translateY(-2px);
+}
+
+.order-submit-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.order-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.order-submit-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Spinner */
+.order-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  display: none;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.order-submit-btn.loading .order-spinner {
+  display: block;
+}
+
+.order-submit-btn.loading .order-submit-text {
+  display: none;
+}
+
+/* ==========================================================================
+   Success State
+   ========================================================================== */
+
+.order-success {
+  display: none;
+  text-align: center;
+  padding: var(--space-12) var(--space-8);
+}
+
+.order-success.visible {
+  display: block;
+  animation: fadeUp var(--duration-slow) var(--ease-out-expo);
+}
+
+.order-success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-6);
+  background: #ECFDF5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #059669;
+  animation: scaleIn var(--duration-slow) var(--ease-spring);
+}
+
+.order-success-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.order-success-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-black);
+  margin-bottom: var(--space-3);
+}
+
+.order-success-text {
+  font-size: var(--text-base);
+  color: var(--color-gray-500);
+  margin-bottom: var(--space-6);
+  line-height: 1.6;
+}
+
+.order-success-zalo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-8);
+  background: #0068FF;
+  color: white;
+  border-radius: var(--radius-xl);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--text-base);
+  text-decoration: none;
+  transition: all var(--duration-normal) var(--ease-out-quart);
+}
+
+.order-success-zalo:hover {
+  background: #0054CC;
+  transform: translateY(-2px);
+  color: white;
+}
+
+/* ==========================================================================
+   Error Message
+   ========================================================================== */
+
+.order-error {
+  display: none;
+  padding: var(--space-3) var(--space-4);
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  color: #991B1B;
+  margin-bottom: var(--space-5);
+}
+
+.order-error.visible {
+  display: block;
+}
+
+/* ==========================================================================
+   Mobile Responsive
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .order-modal {
+    max-height: 95vh;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    margin-top: auto;
+  }
+
+  .order-modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .order-modal-overlay.active .order-modal {
+    transform: translateY(0);
+  }
+
+  .order-modal-header {
+    padding: var(--space-6) var(--space-6) 0;
+  }
+
+  .order-modal-body {
+    padding: var(--space-5) var(--space-6) var(--space-6);
+  }
+
+  .order-tier-selector {
+    grid-template-columns: 1fr;
+  }
+
+  .order-tier-label {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--space-4);
+  }
+}
+
+/* Lock body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+}

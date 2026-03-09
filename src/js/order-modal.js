@@ -1,0 +1,290 @@
+/**
+ * OpenClawBox Order Modal
+ * Captures customer info + saves to Supabase with affiliate ref_code
+ */
+
+(function () {
+    // ============================================================================
+    // CONFIG — Same Supabase project as affiliate.js
+    // ============================================================================
+    const SUPABASE_URL = 'https://lyofqtfthsylmpxktcky.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5b2ZxdGZ0aHN5bG1weGt0Y2t5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDI1MzEsImV4cCI6MjA4ODU3ODUzMX0.dlUr8xnI-j0KYJLpfOppkb0YDiGiTj5bTquUI-gX0wk';
+    const TABLE_NAME = 'orders';
+
+    // ============================================================================
+    // DOM References
+    // ============================================================================
+    const overlay = document.getElementById('orderModalOverlay');
+    const modal = document.getElementById('orderModal');
+    const closeBtn = document.getElementById('orderModalClose');
+    const form = document.getElementById('orderForm');
+    const submitBtn = document.getElementById('orderSubmitBtn');
+    const successView = document.getElementById('orderSuccess');
+    const formView = document.getElementById('orderFormView');
+    const errorMsg = document.getElementById('orderError');
+    const refBadge = document.getElementById('orderRefBadge');
+    const refCodeSpan = document.getElementById('orderRefCode');
+
+    if (!overlay || !form) return;
+
+    // ============================================================================
+    // Tier Mapping
+    // ============================================================================
+    const TIER_MAP = {
+        'starter': 'Starter — 1.199.000₫',
+        'standard': 'Standard — 2.999.000₫',
+        'premium': 'Premium — 4.999.000₫'
+    };
+
+    // ============================================================================
+    // Modal Open/Close
+    // ============================================================================
+
+    function openModal(tier) {
+        // Pre-select tier
+        if (tier) {
+            const radio = form.querySelector(`input[name="tier"][value="${tier}"]`);
+            if (radio) radio.checked = true;
+        }
+
+        // Show ref code badge if exists
+        const refCode = getRefCode();
+        if (refCode && refBadge && refCodeSpan) {
+            refCodeSpan.textContent = refCode;
+            refBadge.classList.add('visible');
+        }
+
+        // Reset state
+        errorMsg.classList.remove('visible');
+        successView.classList.remove('visible');
+        formView.style.display = 'block';
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+
+        // Show modal
+        overlay.classList.add('active');
+        document.body.classList.add('modal-open');
+
+        // Focus first input
+        setTimeout(() => {
+            const firstInput = form.querySelector('input[type="text"]');
+            if (firstInput) firstInput.focus();
+        }, 300);
+    }
+
+    function closeModal() {
+        overlay.classList.remove('active');
+        document.body.classList.remove('modal-open');
+    }
+
+    // Close on overlay click
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeModal();
+    });
+
+    // Close on button
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    // ============================================================================
+    // Intercept CTA Buttons
+    // ============================================================================
+
+    function interceptCTAButtons() {
+        // All "Đặt hàng" buttons (Zalo links in pricing section and CTAs)
+        const orderButtons = document.querySelectorAll('.pricing-tier-cta .btn, .hero-cta .btn-primary, .cta-buttons .btn-primary');
+
+        orderButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Detect tier from button context
+                const tierCard = btn.closest('.pricing-tier');
+                let tier = 'standard';
+
+                if (tierCard) {
+                    const tierName = tierCard.querySelector('.pricing-tier-name');
+                    if (tierName) {
+                        const name = tierName.textContent.toLowerCase().trim();
+                        if (name === 'starter') tier = 'starter';
+                        else if (name === 'premium') tier = 'premium';
+                        else tier = 'standard';
+                    }
+                }
+
+                openModal(tier);
+            });
+        });
+    }
+
+    // ============================================================================
+    // Form Validation
+    // ============================================================================
+
+    function validateForm() {
+        const name = form.querySelector('#orderName').value.trim();
+        const phone = form.querySelector('#orderPhone').value.trim();
+
+        if (!name) {
+            showError('Vui lòng nhập họ tên');
+            form.querySelector('#orderName').classList.add('error');
+            form.querySelector('#orderName').focus();
+            return false;
+        }
+
+        if (!phone) {
+            showError('Vui lòng nhập số điện thoại');
+            form.querySelector('#orderPhone').classList.add('error');
+            form.querySelector('#orderPhone').focus();
+            return false;
+        }
+
+        // Basic Vietnamese phone validation
+        const phoneClean = phone.replace(/[\s.-]/g, '');
+        if (!/^(0|\+84)\d{8,10}$/.test(phoneClean)) {
+            showError('Số điện thoại không hợp lệ');
+            form.querySelector('#orderPhone').classList.add('error');
+            form.querySelector('#orderPhone').focus();
+            return false;
+        }
+
+        return true;
+    }
+
+    function showError(msg) {
+        errorMsg.textContent = msg;
+        errorMsg.classList.add('visible');
+    }
+
+    function clearErrors() {
+        errorMsg.classList.remove('visible');
+        form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+    }
+
+    // ============================================================================
+    // Get Ref Code from Affiliate Tracking
+    // ============================================================================
+
+    function getRefCode() {
+        if (window.OpenClawBoxAffiliate && window.OpenClawBoxAffiliate.getRefCode) {
+            return window.OpenClawBoxAffiliate.getRefCode();
+        }
+        return null;
+    }
+
+    // ============================================================================
+    // Submit Order
+    // ============================================================================
+
+    async function submitOrder() {
+        clearErrors();
+
+        if (!validateForm()) return;
+
+        const name = form.querySelector('#orderName').value.trim();
+        const phone = form.querySelector('#orderPhone').value.trim();
+        const address = form.querySelector('#orderAddress').value.trim();
+        const tier = form.querySelector('input[name="tier"]:checked')?.value || 'standard';
+        const notes = form.querySelector('#orderNotes').value.trim();
+        const refCode = getRefCode();
+
+        const payload = {
+            full_name: name,
+            phone: phone,
+            address: address || null,
+            selected_tier: tier,
+            notes: notes || null,
+            ref_code: refCode
+        };
+
+        // Show loading
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+
+        try {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE_NAME}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                console.log('[Order] ✅ Order submitted:', { name, phone, tier, refCode });
+                showSuccess();
+            } else {
+                const errorText = await response.text();
+                console.error('[Order] ❌ Failed:', response.status, errorText);
+                showError('Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ Zalo.');
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+            }
+        } catch (error) {
+            console.error('[Order] ❌ Network error:', error.message);
+            showError('Lỗi kết nối, vui lòng kiểm tra mạng và thử lại.');
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+        }
+    }
+
+    // ============================================================================
+    // Success View
+    // ============================================================================
+
+    function showSuccess() {
+        formView.style.display = 'none';
+        successView.classList.add('visible');
+
+        // Reset form for next time
+        form.reset();
+        // Re-check default tier
+        const defaultTier = form.querySelector('input[name="tier"][value="standard"]');
+        if (defaultTier) defaultTier.checked = true;
+    }
+
+    // ============================================================================
+    // Event Listeners
+    // ============================================================================
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        submitOrder();
+    });
+
+    // Clear individual field errors on input
+    form.querySelectorAll('.order-form-input').forEach(input => {
+        input.addEventListener('input', () => {
+            input.classList.remove('error');
+            errorMsg.classList.remove('visible');
+        });
+    });
+
+    // ============================================================================
+    // Initialize
+    // ============================================================================
+
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', interceptCTAButtons);
+    } else {
+        interceptCTAButtons();
+    }
+
+    // Expose for external use
+    window.OpenClawBoxOrder = {
+        open: openModal,
+        close: closeModal
+    };
+
+    console.log('[Order] ✅ Order modal initialized');
+})();

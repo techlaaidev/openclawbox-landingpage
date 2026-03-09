@@ -168,6 +168,7 @@
   <link rel="stylesheet" href="src/css/phone.css">
   <link rel="stylesheet" href="src/css/pricing-tiers.css">
   <link rel="stylesheet" href="src/css/announcement.css">
+  <link rel="stylesheet" href="src/css/order-modal.css">
 </head>
 
 <body>
@@ -632,12 +633,7 @@
               </svg>
               <span>License OpenClawBox AI Agent</span>
             </li>
-            <li class="pricing-tier-feature">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>11 module AI Agent đầy đủ</span>
-            </li>
+
             <li class="pricing-tier-feature">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -989,6 +985,113 @@
     </a>
   </div>
 
+  <!-- Order Modal -->
+  <div class="order-modal-overlay" id="orderModalOverlay">
+    <div class="order-modal" id="orderModal">
+      <!-- Form View -->
+      <div id="orderFormView">
+        <div class="order-modal-header">
+          <div>
+            <h3 class="order-modal-title">Đặt Hàng</h3>
+            <p class="order-modal-subtitle">Điền thông tin để chúng tôi liên hệ xác nhận đơn hàng</p>
+          </div>
+          <button class="order-modal-close" id="orderModalClose" aria-label="Đóng">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="order-modal-body">
+          <!-- Ref Code Badge -->
+          <div class="order-ref-badge" id="orderRefBadge">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+            </svg>
+            <span>Mã giới thiệu: <strong id="orderRefCode"></strong></span>
+          </div>
+
+          <div class="order-error" id="orderError"></div>
+
+          <form id="orderForm">
+            <div class="order-form-group">
+              <label class="order-form-label" for="orderName">Họ và tên <span class="required">*</span></label>
+              <input type="text" id="orderName" class="order-form-input" placeholder="Nguyễn Văn A" required>
+            </div>
+
+            <div class="order-form-group">
+              <label class="order-form-label" for="orderPhone">Số điện thoại <span class="required">*</span></label>
+              <input type="tel" id="orderPhone" class="order-form-input" placeholder="0912 345 678" required>
+            </div>
+
+            <div class="order-form-group">
+              <label class="order-form-label" for="orderAddress">Địa chỉ giao hàng</label>
+              <input type="text" id="orderAddress" class="order-form-input"
+                placeholder="Số nhà, đường, quận/huyện, tỉnh/thành phố">
+            </div>
+
+            <div class="order-form-group">
+              <label class="order-form-label">Chọn gói</label>
+              <div class="order-tier-selector">
+                <div class="order-tier-option">
+                  <input type="radio" name="tier" value="starter" id="tierStarter">
+                  <label class="order-tier-label" for="tierStarter">
+                    <span class="order-tier-name">Starter</span>
+                    <span class="order-tier-price">1.199.000₫</span>
+                  </label>
+                </div>
+                <div class="order-tier-option">
+                  <input type="radio" name="tier" value="standard" id="tierStandard" checked>
+                  <label class="order-tier-label" for="tierStandard">
+                    <span class="order-tier-name">Standard</span>
+                    <span class="order-tier-price">2.999.000₫</span>
+                  </label>
+                </div>
+                <div class="order-tier-option">
+                  <input type="radio" name="tier" value="premium" id="tierPremium">
+                  <label class="order-tier-label" for="tierPremium">
+                    <span class="order-tier-name">Premium</span>
+                    <span class="order-tier-price">4.999.000₫</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="order-form-group">
+              <label class="order-form-label" for="orderNotes">Ghi chú</label>
+              <textarea id="orderNotes" class="order-form-input"
+                placeholder="Yêu cầu đặc biệt, thời gian nhận hàng..."></textarea>
+            </div>
+
+            <button type="submit" class="order-submit-btn" id="orderSubmitBtn">
+              <span class="order-submit-text">Xác nhận đặt hàng</span>
+              <div class="order-spinner"></div>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Success View -->
+      <div class="order-success" id="orderSuccess">
+        <div class="order-success-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 class="order-success-title">Đặt hàng thành công!</h3>
+        <p class="order-success-text">Cảm ơn bạn đã đặt hàng. Chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất.
+        </p>
+        <a href="https://zalo.me/0868287651" target="_blank" rel="noopener" class="order-success-zalo">
+          Chat Zalo để được tư vấn thêm
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <!-- Phone Float Button -->
   <div class="phone-float">
     <div class="phone-tooltip" data-i18n="phone.tooltip">Gọi ngay: 0868.287.651</div>
@@ -1014,7 +1117,9 @@
 
   <!-- Scripts -->
   <script src="src/js/i18n.js"></script>
+  <script src="src/js/affiliate.js"></script>
   <script src="src/js/main.js"></script>
+  <script src="src/js/order-modal.js"></script>
   <script>
     // Announcement Bar
     (function () {
