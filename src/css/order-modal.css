@@ -208,7 +208,7 @@ textarea.order-form-input {
   border-color: var(--color-gray-400);
 }
 
-.order-tier-option input:checked + .order-tier-label {
+.order-tier-option input:checked+.order-tier-label {
   border-color: var(--color-primary);
   background: var(--color-primary-light);
   box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.08);
@@ -309,7 +309,9 @@ textarea.order-form-input {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .order-submit-btn.loading .order-spinner {
@@ -321,13 +323,13 @@ textarea.order-form-input {
 }
 
 /* ==========================================================================
-   Success State
+   Success / Payment State
    ========================================================================== */
 
 .order-success {
   display: none;
   text-align: center;
-  padding: var(--space-12) var(--space-8);
+  padding: var(--space-6) var(--space-8) var(--space-8);
 }
 
 .order-success.visible {
@@ -335,10 +337,15 @@ textarea.order-form-input {
   animation: fadeUp var(--duration-slow) var(--ease-out-expo);
 }
 
+/* Payment Header */
+.order-payment-header {
+  margin-bottom: var(--space-5);
+}
+
 .order-success-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto var(--space-6);
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-4);
   background: #ECFDF5;
   border-radius: 50%;
   display: flex;
@@ -349,16 +356,125 @@ textarea.order-form-input {
 }
 
 .order-success-icon svg {
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 28px;
 }
 
 .order-success-title {
   font-family: var(--font-display);
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-black);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-1);
+}
+
+.order-payment-subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+  margin: 0;
+}
+
+/* QR Code */
+.order-qr-wrapper {
+  padding: var(--space-4);
+  background: var(--color-white);
+  border: 1.5px solid var(--color-gray-200);
+  border-radius: var(--radius-xl);
+  display: inline-block;
+  margin-bottom: var(--space-5);
+}
+
+.order-qr-img {
+  width: 220px;
+  height: 220px;
+  border-radius: var(--radius-lg);
+  object-fit: contain;
+}
+
+/* Payment Info Table */
+.order-payment-info {
+  background: var(--color-gray-50);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  text-align: left;
+  margin-bottom: var(--space-4);
+}
+
+.order-payment-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.order-payment-row:last-child {
+  border-bottom: none;
+}
+
+.order-payment-row.highlight {
+  background: var(--color-primary-light);
+}
+
+.order-payment-label {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+  flex-shrink: 0;
+  min-width: 80px;
+}
+
+.order-payment-value {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-black);
+  text-align: right;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.order-payment-amount {
+  font-size: var(--text-lg);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Copy Button */
+.order-copy-btn {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+  background: var(--color-white);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out-quart);
+  white-space: nowrap;
+  font-family: var(--font-body);
+}
+
+.order-copy-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.order-copy-btn.copied {
+  background: #059669;
+  border-color: #059669;
+  color: var(--color-white);
+}
+
+/* Payment Note */
+.order-payment-note {
+  font-size: var(--text-xs);
+  color: var(--color-gray-500);
+  margin-bottom: var(--space-5);
+  line-height: 1.5;
+}
+
+.order-payment-note strong {
+  color: var(--color-black);
 }
 
 .order-success-text {

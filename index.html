@@ -1072,18 +1072,64 @@
         </div>
       </div>
 
-      <!-- Success View -->
+      <!-- Payment View (QR Code) -->
       <div class="order-success" id="orderSuccess">
-        <div class="order-success-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
+        <div class="order-payment-header">
+          <div class="order-success-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 class="order-success-title">Đặt hàng thành công!</h3>
+          <p class="order-payment-subtitle">Quét mã QR hoặc chuyển khoản theo thông tin bên dưới</p>
         </div>
-        <h3 class="order-success-title">Đặt hàng thành công!</h3>
-        <p class="order-success-text">Cảm ơn bạn đã đặt hàng. Chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất.
+
+        <!-- QR Code -->
+        <div class="order-qr-wrapper">
+          <img id="paymentQRImg" class="order-qr-img" src="" alt="QR Code thanh toán">
+        </div>
+
+        <!-- Payment Info -->
+        <div class="order-payment-info">
+          <div class="order-payment-row">
+            <span class="order-payment-label">Gói</span>
+            <span class="order-payment-value" id="paymentTier">Standard</span>
+          </div>
+          <div class="order-payment-row highlight">
+            <span class="order-payment-label">Số tiền</span>
+            <span class="order-payment-value order-payment-amount" id="paymentAmount">2.999.000₫</span>
+          </div>
+          <div class="order-payment-row">
+            <span class="order-payment-label">Ngân hàng</span>
+            <span class="order-payment-value" id="paymentBank">Techcombank</span>
+          </div>
+          <div class="order-payment-row">
+            <span class="order-payment-label">Chủ TK</span>
+            <span class="order-payment-value" id="paymentHolder">HOANG DINH TUAN</span>
+          </div>
+          <div class="order-payment-row">
+            <span class="order-payment-label">Số TK</span>
+            <span class="order-payment-value">
+              <span id="paymentAccount">1903 2583 7710 26</span>
+              <button class="order-copy-btn" onclick="copyPaymentInfo('19032583771026', this)">Copy</button>
+            </span>
+          </div>
+          <div class="order-payment-row">
+            <span class="order-payment-label">Nội dung CK</span>
+            <span class="order-payment-value">
+              <span id="paymentDesc">OCB</span>
+              <button class="order-copy-btn"
+                onclick="copyPaymentInfo(document.getElementById('paymentDesc').textContent, this)">Copy</button>
+            </span>
+          </div>
+        </div>
+
+        <p class="order-payment-note">
+          ⚠️ Vui lòng nhập <strong>đúng nội dung chuyển khoản</strong> để đơn hàng được xử lý nhanh nhất.
         </p>
+
         <a href="https://zalo.me/0868287651" target="_blank" rel="noopener" class="order-success-zalo">
-          Chat Zalo để được tư vấn thêm
+          Chat Zalo xác nhận đã chuyển khoản
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>

@@ -1,6 +1,7 @@
 /**
  * OpenClawBox Order Modal
  * Captures customer info + saves to Supabase with affiliate ref_code
+ * Shows QR code for bank transfer payment
  */
 
 (function () {
@@ -10,6 +11,11 @@
     const SUPABASE_URL = 'https://lyofqtfthsylmpxktcky.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5b2ZxdGZ0aHN5bG1weGt0Y2t5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDI1MzEsImV4cCI6MjA4ODU3ODUzMX0.dlUr8xnI-j0KYJLpfOppkb0YDiGiTj5bTquUI-gX0wk';
     const TABLE_NAME = 'orders';
+
+    // Bank transfer config
+    const BANK_ACCOUNT = '19032583771026';
+    const BANK_NAME = 'Techcombank';
+    const BANK_HOLDER = 'HOANG DINH TUAN';
 
     // ============================================================================
     // DOM References
@@ -30,10 +36,16 @@
     // ============================================================================
     // Tier Mapping
     // ============================================================================
-    const TIER_MAP = {
-        'starter': 'Starter — 1.199.000₫',
-        'standard': 'Standard — 2.999.000₫',
-        'premium': 'Premium — 4.999.000₫'
+    const TIER_PRICES = {
+        'starter': 1199000,
+        'standard': 2999000,
+        'premium': 4999000
+    };
+
+    const TIER_LABELS = {
+        'starter': 'Starter',
+        'standard': 'Standard',
+        'premium': 'Premium'
     };
 
     // ============================================================================
@@ -97,14 +109,12 @@
     // ============================================================================
 
     function interceptCTAButtons() {
-        // All "Đặt hàng" buttons (Zalo links in pricing section and CTAs)
         const orderButtons = document.querySelectorAll('.pricing-tier-cta .btn, .hero-cta .btn-primary, .cta-buttons .btn-primary');
 
         orderButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
 
-                // Detect tier from button context
                 const tierCard = btn.closest('.pricing-tier');
                 let tier = 'standard';
 
@@ -145,7 +155,6 @@
             return false;
         }
 
-        // Basic Vietnamese phone validation
         const phoneClean = phone.replace(/[\s.-]/g, '');
         if (!/^(0|\+84)\d{8,10}$/.test(phoneClean)) {
             showError('Số điện thoại không hợp lệ');
@@ -179,6 +188,41 @@
     }
 
     // ============================================================================
+    // Format Currency
+    // ============================================================================
+
+    function formatVND(amount) {
+        return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '₫';
+    }
+
+    // ============================================================================
+    // Generate Transfer Description
+    // ============================================================================
+
+    function generateTransferDesc(orderId, phone, refCode) {
+        const shortId = orderId ? orderId.substring(0, 8).toUpperCase() : '';
+        const phoneClean = phone ? phone.replace(/[\s.-]/g, '') : '';
+        let desc = `OCB ${shortId} ${phoneClean}`;
+        if (refCode) desc += ` ${refCode}`;
+        return desc;
+    }
+
+    // ============================================================================
+    // Generate QR URL
+    // ============================================================================
+
+    function generateQRUrl(amount, description) {
+        const params = new URLSearchParams({
+            acc: BANK_ACCOUNT,
+            bank: BANK_NAME,
+            amount: amount.toString(),
+            des: description,
+            template: 'compact'
+        });
+        return `https://qr.sepay.vn/img?${params.toString()}`;
+    }
+
+    // ============================================================================
     // Submit Order
     // ============================================================================
 
@@ -193,6 +237,7 @@
         const tier = form.querySelector('input[name="tier"]:checked')?.value || 'standard';
         const notes = form.querySelector('#orderNotes').value.trim();
         const refCode = getRefCode();
+        const amount = TIER_PRICES[tier] || TIER_PRICES['standard'];
 
         const payload = {
             full_name: name,
@@ -214,14 +259,16 @@
                     'Content-Type': 'application/json',
                     'apikey': SUPABASE_ANON_KEY,
                     'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Prefer': 'return=minimal'
+                    'Prefer': 'return=representation'
                 },
                 body: JSON.stringify(payload)
             });
 
             if (response.ok) {
-                console.log('[Order] ✅ Order submitted:', { name, phone, tier, refCode });
-                showSuccess();
+                const data = await response.json();
+                const orderId = data[0]?.id || '';
+                console.log('[Order] ✅ Order submitted:', { name, phone, tier, refCode, orderId });
+                showPayment(tier, amount, orderId, phone, refCode);
             } else {
                 const errorText = await response.text();
                 console.error('[Order] ❌ Failed:', response.status, errorText);
@@ -238,19 +285,71 @@
     }
 
     // ============================================================================
-    // Success View
+    // Payment View (QR Code)
     // ============================================================================
 
-    function showSuccess() {
+    function showPayment(tier, amount, orderId, phone, refCode) {
+        const transferDesc = generateTransferDesc(orderId, phone, refCode);
+        const qrUrl = generateQRUrl(amount, transferDesc);
+
+        // Update payment view elements
+        const qrImg = document.getElementById('paymentQRImg');
+        const amountEl = document.getElementById('paymentAmount');
+        const tierEl = document.getElementById('paymentTier');
+        const descEl = document.getElementById('paymentDesc');
+        const bankEl = document.getElementById('paymentBank');
+        const holderEl = document.getElementById('paymentHolder');
+        const accountEl = document.getElementById('paymentAccount');
+
+        if (qrImg) qrImg.src = qrUrl;
+        if (amountEl) amountEl.textContent = formatVND(amount);
+        if (tierEl) tierEl.textContent = TIER_LABELS[tier] || 'Standard';
+        if (descEl) descEl.textContent = transferDesc;
+        if (bankEl) bankEl.textContent = BANK_NAME;
+        if (holderEl) holderEl.textContent = BANK_HOLDER;
+        if (accountEl) accountEl.textContent = BANK_ACCOUNT.replace(/(.{4})/g, '$1 ').trim();
+
+        // Switch views
         formView.style.display = 'none';
         successView.classList.add('visible');
 
         // Reset form for next time
         form.reset();
-        // Re-check default tier
         const defaultTier = form.querySelector('input[name="tier"][value="standard"]');
         if (defaultTier) defaultTier.checked = true;
     }
+
+    // ============================================================================
+    // Copy to clipboard helper
+    // ============================================================================
+
+    window.copyPaymentInfo = function (text, btnEl) {
+        navigator.clipboard.writeText(text).then(() => {
+            const original = btnEl.textContent;
+            btnEl.textContent = 'Đã copy ✓';
+            btnEl.classList.add('copied');
+            setTimeout(() => {
+                btnEl.textContent = original;
+                btnEl.classList.remove('copied');
+            }, 2000);
+        }).catch(() => {
+            // Fallback
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const original = btnEl.textContent;
+            btnEl.textContent = 'Đã copy ✓';
+            btnEl.classList.add('copied');
+            setTimeout(() => {
+                btnEl.textContent = original;
+                btnEl.classList.remove('copied');
+            }, 2000);
+        });
+    };
 
     // ============================================================================
     // Event Listeners
@@ -261,7 +360,6 @@
         submitOrder();
     });
 
-    // Clear individual field errors on input
     form.querySelectorAll('.order-form-input').forEach(input => {
         input.addEventListener('input', () => {
             input.classList.remove('error');
@@ -273,14 +371,12 @@
     // Initialize
     // ============================================================================
 
-    // Wait for DOM to be ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', interceptCTAButtons);
     } else {
         interceptCTAButtons();
     }
 
-    // Expose for external use
     window.OpenClawBoxOrder = {
         open: openModal,
         close: closeModal
