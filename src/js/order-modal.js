@@ -13,9 +13,9 @@
     const TABLE_NAME = 'orders';
 
     // Bank transfer config
-    const BANK_ACCOUNT = '19032583771026';
+    const BANK_ACCOUNT = '39156868';
     const BANK_NAME = 'Techcombank';
-    const BANK_HOLDER = 'HOANG DINH TUAN';
+    const BANK_HOLDER = 'CONG TY TNHH TECHLA AI';
 
     // ============================================================================
     // DOM References
