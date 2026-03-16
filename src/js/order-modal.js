@@ -37,17 +37,11 @@
     // Tier Mapping
     // ============================================================================
     const TIER_PRICES = {
-        'starter': 1199000,
-        'standard': 2999000,
-        'premium': 4999000,
-        'enterprise': 7999000
+        'premium': 4999000
     };
 
     const TIER_LABELS = {
-        'starter': 'Starter',
-        'standard': 'Standard',
-        'premium': 'Premium',
-        'enterprise': 'Enterprise'
+        'premium': 'Premium'
     };
 
     // ============================================================================
@@ -111,27 +105,12 @@
     // ============================================================================
 
     function interceptCTAButtons() {
-        const orderButtons = document.querySelectorAll('.pricing-tier-cta .btn, .hero-cta .btn-primary, .cta-buttons .btn-primary');
+        const orderButtons = document.querySelectorAll('#premiumOrderBtn, .hero-cta .btn-primary, .cta-buttons .btn-primary');
 
         orderButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-
-                const tierCard = btn.closest('.pricing-tier');
-                let tier = 'standard';
-
-                if (tierCard) {
-                    const tierName = tierCard.querySelector('.pricing-tier-name');
-                    if (tierName) {
-                        const name = tierName.textContent.toLowerCase().trim();
-                        if (name === 'starter') tier = 'starter';
-                        else if (name === 'enterprise') tier = 'enterprise';
-                        else if (name === 'premium') tier = 'premium';
-                        else tier = 'standard';
-                    }
-                }
-
-                openModal(tier);
+                openModal('premium');
             });
         });
     }

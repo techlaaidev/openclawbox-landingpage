@@ -1,6 +1,6 @@
 /**
  * OpenClawBox Affiliate Click Tracking
- * Detects ?ref= query param and logs click to Supabase
+ * Detects ?r= query param and logs click to Supabase
  */
 
 (function () {
@@ -20,7 +20,7 @@
 
   function getRefCode() {
     const params = new URLSearchParams(window.location.search);
-    return params.get('ref');
+    return params.get('r') || params.get('ref');
   }
 
   function isAlreadyTracked(refCode) {
