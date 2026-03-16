@@ -619,7 +619,7 @@
       </div>
 
       <div class="pricing-grid reveal">
-        <!-- Tier 1: Basic -->
+        <!-- Tier 1: Starter -->
         <div class="pricing-tier">
           <h3 class="pricing-tier-name">Starter</h3>
           <div class="pricing-tier-price">1.199.000₫</div>
@@ -633,7 +633,6 @@
               </svg>
               <span>License OpenClawBox AI Agent</span>
             </li>
-
             <li class="pricing-tier-feature">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -665,9 +664,8 @@
           </div>
         </div>
 
-        <!-- Tier 2: Standard (Featured) -->
-        <div class="pricing-tier featured">
-          <span class="pricing-badge">Phổ biến</span>
+        <!-- Tier 2: Standard (Sold Out) -->
+        <div class="pricing-tier sold-out">
           <h3 class="pricing-tier-name">Standard</h3>
           <div class="pricing-tier-price">2.999.000₫</div>
           <p class="pricing-tier-period">Thanh toán một lần</p>
@@ -707,14 +705,73 @@
           </ul>
 
           <div class="pricing-tier-cta">
+            <a href="#" class="btn btn-secondary btn-lg">Hết hàng</a>
+          </div>
+        </div>
+
+        <!-- Tier 3: Premium (Featured) -->
+        <div class="pricing-tier featured">
+          <span class="pricing-badge">Phổ biến</span>
+          <h3 class="pricing-tier-name">Premium</h3>
+          <div class="pricing-tier-price">4.999.000₫</div>
+          <p class="pricing-tier-period">Thanh toán một lần</p>
+          <p class="pricing-tier-desc">Mini PC cấu hình cao + OpenClawBox AI Agent thiết lập sẵn</p>
+
+          <ul class="pricing-tier-features">
+            <li class="pricing-tier-feature">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Mini PC Ryzen R1505G, 4GB RAM / 64GB SSD</span>
+            </li>
+            <li class="pricing-tier-feature">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Tiết kiệm điện năng</span>
+            </li>
+            <li class="pricing-tier-feature">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>OpenClawBox AI Agent thiết lập sẵn</span>
+            </li>
+            <li class="pricing-tier-feature">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Bảo hành phần cứng 1 tháng</span>
+            </li>
+            <li class="pricing-tier-feature">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Cập nhật AI Agent trọn đời</span>
+            </li>
+            <li class="pricing-tier-feature">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Cộng đồng hỗ trợ kỹ thuật</span>
+            </li>
+          </ul>
+
+          <div class="pricing-option-note">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+            Nâng cấp 8GB RAM / 64GB SSD: +1.000.000₫
+          </div>
+
+          <div class="pricing-tier-cta">
             <a href="https://zalo.me/0868287651" class="btn btn-primary btn-lg">Đặt hàng ngay</a>
           </div>
         </div>
 
-        <!-- Tier 3: Premium -->
+        <!-- Tier 4: Enterprise (old Premium content) -->
         <div class="pricing-tier">
-          <h3 class="pricing-tier-name">Premium</h3>
-          <div class="pricing-tier-price">4.999.000₫</div>
+          <h3 class="pricing-tier-name">Enterprise</h3>
+          <div class="pricing-tier-price">7.999.000₫</div>
           <p class="pricing-tier-period">Thanh toán một lần</p>
           <p class="pricing-tier-desc">Thiết bị + Tư vấn setup workflow 1-1 theo nhu cầu doanh nghiệp</p>
 
@@ -723,7 +780,7 @@
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
-              <span>Tất cả tính năng gói Standard</span>
+              <span>Tất cả tính năng gói Premium</span>
             </li>
             <li class="pricing-tier-feature">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1032,18 +1089,25 @@
                     <span class="order-tier-price">1.199.000₫</span>
                   </label>
                 </div>
-                <div class="order-tier-option">
-                  <input type="radio" name="tier" value="standard" id="tierStandard" checked>
+                <div class="order-tier-option" style="opacity: 0.4; pointer-events: none;">
+                  <input type="radio" name="tier" value="standard" id="tierStandard" disabled>
                   <label class="order-tier-label" for="tierStandard">
-                    <span class="order-tier-name">Standard</span>
+                    <span class="order-tier-name">Standard (Hết hàng)</span>
                     <span class="order-tier-price">2.999.000₫</span>
                   </label>
                 </div>
                 <div class="order-tier-option">
-                  <input type="radio" name="tier" value="premium" id="tierPremium">
+                  <input type="radio" name="tier" value="premium" id="tierPremium" checked>
                   <label class="order-tier-label" for="tierPremium">
                     <span class="order-tier-name">Premium</span>
                     <span class="order-tier-price">4.999.000₫</span>
+                  </label>
+                </div>
+                <div class="order-tier-option">
+                  <input type="radio" name="tier" value="enterprise" id="tierEnterprise">
+                  <label class="order-tier-label" for="tierEnterprise">
+                    <span class="order-tier-name">Enterprise</span>
+                    <span class="order-tier-price">7.999.000₫</span>
                   </label>
                 </div>
               </div>

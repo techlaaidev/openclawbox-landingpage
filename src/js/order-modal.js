@@ -39,13 +39,15 @@
     const TIER_PRICES = {
         'starter': 1199000,
         'standard': 2999000,
-        'premium': 4999000
+        'premium': 4999000,
+        'enterprise': 7999000
     };
 
     const TIER_LABELS = {
         'starter': 'Starter',
         'standard': 'Standard',
-        'premium': 'Premium'
+        'premium': 'Premium',
+        'enterprise': 'Enterprise'
     };
 
     // ============================================================================
@@ -123,6 +125,7 @@
                     if (tierName) {
                         const name = tierName.textContent.toLowerCase().trim();
                         if (name === 'starter') tier = 'starter';
+                        else if (name === 'enterprise') tier = 'enterprise';
                         else if (name === 'premium') tier = 'premium';
                         else tier = 'standard';
                     }
@@ -315,7 +318,7 @@
 
         // Reset form for next time
         form.reset();
-        const defaultTier = form.querySelector('input[name="tier"][value="standard"]');
+        const defaultTier = form.querySelector('input[name="tier"][value="premium"]');
         if (defaultTier) defaultTier.checked = true;
     }
 
