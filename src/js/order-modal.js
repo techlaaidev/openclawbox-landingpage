@@ -219,7 +219,7 @@
         const tier = form.querySelector('input[name="tier"]')?.value || 'premium';
         const notes = form.querySelector('#orderNotes').value.trim();
         const refCode = getRefCode();
-        const amount = TIER_PRICES[tier] || TIER_PRICES['premium'];
+        const amount = TIER_PRICES[tier] || 4999000;
 
         const payload = {
             full_name: name,
