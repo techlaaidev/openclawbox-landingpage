@@ -174,7 +174,8 @@
     // ============================================================================
 
     function formatVND(amount) {
-        return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '₫';
+        const num = Number(amount) || 0;
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '₫';
     }
 
     // ============================================================================
@@ -194,11 +195,12 @@
     // ============================================================================
 
     function generateQRUrl(amount, description) {
+        const safeAmount = Number(amount) || 4999000;
         const params = new URLSearchParams({
             acc: BANK_ACCOUNT,
             bank: BANK_NAME,
-            amount: amount.toString(),
-            des: description,
+            amount: safeAmount.toString(),
+            des: description || '',
             template: 'compact'
         });
         return `https://qr.sepay.vn/img?${params.toString()}`;
@@ -259,7 +261,7 @@
                 submitBtn.disabled = false;
             }
         } catch (error) {
-            console.error('[Order] ❌ Network error:', error.message);
+            console.error('[Order] ❌ Network error:', error?.message || error);
             showError('Lỗi kết nối, vui lòng kiểm tra mạng và thử lại.');
             submitBtn.classList.remove('loading');
             submitBtn.disabled = false;
