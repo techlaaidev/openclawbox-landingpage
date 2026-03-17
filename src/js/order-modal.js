@@ -216,10 +216,10 @@
         const name = form.querySelector('#orderName').value.trim();
         const phone = form.querySelector('#orderPhone').value.trim();
         const address = form.querySelector('#orderAddress').value.trim();
-        const tier = form.querySelector('input[name="tier"]:checked')?.value || 'standard';
+        const tier = form.querySelector('input[name="tier"]')?.value || 'premium';
         const notes = form.querySelector('#orderNotes').value.trim();
         const refCode = getRefCode();
-        const amount = TIER_PRICES[tier] || TIER_PRICES['standard'];
+        const amount = TIER_PRICES[tier] || TIER_PRICES['premium'];
 
         const payload = {
             full_name: name,
@@ -285,7 +285,7 @@
 
         if (qrImg) qrImg.src = qrUrl;
         if (amountEl) amountEl.textContent = formatVND(amount);
-        if (tierEl) tierEl.textContent = TIER_LABELS[tier] || 'Standard';
+        if (tierEl) tierEl.textContent = TIER_LABELS[tier] || 'Premium';
         if (descEl) descEl.textContent = transferDesc;
         if (bankEl) bankEl.textContent = BANK_NAME;
         if (holderEl) holderEl.textContent = BANK_HOLDER;
