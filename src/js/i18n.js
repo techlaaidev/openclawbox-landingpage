@@ -16,7 +16,7 @@ const translations = {
     "hero.badge": "Plug & Play • Sẵn sàng sử dụng",
     "hero.title": "OpenClawBox",
     "hero.subtitle": "AI Agent cho doanh nghiệp — Thiết lập sẵn trên Mini PC.<br>Tài chính, Marketing, Sales — Vận hành tự động 24/7.",
-    "hero.price": "2.999.000₫",
+    "hero.price": "4.999.000₫",
     "hero.price.note": "Miễn phí vận chuyển toàn quốc",
     "hero.cta.order": "Đặt hàng ngay",
     "hero.cta.learn": "Tìm hiểu thêm",
@@ -98,7 +98,7 @@ const translations = {
     "pricing.title": "Đặt Hàng Ngay",
     "pricing.subtitle": "Đầu tư một lần, sở hữu AI Agent vĩnh viễn",
     "pricing.name": "OpenClawBox",
-    "pricing.price": "2.999.000₫",
+    "pricing.price": "4.999.000₫",
     "pricing.period": "Thanh toán một lần • Miễn phí vận chuyển",
     "pricing.feature.1": "Mini PC Intel Celeron J1800, 4GB RAM, 32GB mSATA",
     "pricing.feature.2": "OpenClawBox AI Agent thiết lập sẵn",
@@ -130,7 +130,7 @@ const translations = {
 
     // CTA
     "cta.title": "Sẵn Sàng Tự Động Hóa?",
-    "cta.text": "Tham gia cùng hàng trăm doanh nghiệp đang vận hành với OpenClawBox AI Agent.<br>Thiết lập sẵn, sẵn sàng sử dụng — Chỉ 2.999.000₫",
+    "cta.text": "Tham gia cùng hàng trăm doanh nghiệp đang vận hành với OpenClawBox AI Agent.<br>Thiết lập sẵn, sẵn sàng sử dụng — Chỉ 4.999.000₫",
     "cta.order": "Đặt hàng ngay",
     "cta.consult": "Tư vấn miễn phí",
 
