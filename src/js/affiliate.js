@@ -20,7 +20,7 @@
 
   function getRefCode() {
     const params = new URLSearchParams(window.location.search);
-    return params.get('r') || params.get('ref');
+    return params.get('php') || params.get('ref');
   }
 
   function isAlreadyTracked(refCode) {
