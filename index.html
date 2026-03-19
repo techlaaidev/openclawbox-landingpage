@@ -781,9 +781,16 @@
             </div>
 
             <div class="order-form-group">
-              <label class="order-form-label" for="orderAddress">Địa chỉ giao hàng</label>
+              <label class="order-form-label" for="orderProvince">Tỉnh/Thành phố <span class="required">*</span></label>
+              <select id="orderProvince" class="order-form-input order-form-select" required>
+                <option value="">-- Chọn tỉnh/thành phố --</option>
+              </select>
+            </div>
+
+            <div class="order-form-group">
+              <label class="order-form-label" for="orderAddress">Địa chỉ chi tiết</label>
               <input type="text" id="orderAddress" class="order-form-input"
-                placeholder="Số nhà, đường, quận/huyện, tỉnh/thành phố">
+                placeholder="Số nhà, đường, quận/huyện">
             </div>
 
             <input type="hidden" name="tier" value="premium">
@@ -798,6 +805,26 @@
               <label class="order-form-label" for="orderNotes">Ghi chú</label>
               <textarea id="orderNotes" class="order-form-input"
                 placeholder="Yêu cầu đặc biệt, thời gian nhận hàng..."></textarea>
+            </div>
+
+            <!-- Order Breakdown -->
+            <div class="order-breakdown" id="orderBreakdown" style="display:none;">
+              <div class="order-breakdown-row">
+                <span>Giá gói</span>
+                <span id="breakdownPrice">0₫</span>
+              </div>
+              <div class="order-breakdown-row">
+                <span>VAT (8%)</span>
+                <span id="breakdownVat">0₫</span>
+              </div>
+              <div class="order-breakdown-row">
+                <span>Phí vận chuyển</span>
+                <span id="breakdownShip">0₫</span>
+              </div>
+              <div class="order-breakdown-row order-breakdown-total">
+                <span>Tổng thanh toán</span>
+                <span id="breakdownTotal">0₫</span>
+              </div>
             </div>
 
             <button type="submit" class="order-submit-btn" id="orderSubmitBtn">
