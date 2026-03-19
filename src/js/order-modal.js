@@ -17,6 +17,34 @@
     const BANK_NAME = 'Techcombank';
     const BANK_HOLDER = 'CONG TY TNHH TECHLA AI';
 
+    // VAT rate
+    const VAT_RATE = 0.08;
+
+    // Shipping rates (Viettel Post Standard, ~1kg, from Hanoi)
+    const SHIPPING_RATES = { local: 16500, region: 39600, inter: 46200 };
+
+    // 63 provinces → shipping zone
+    const PROVINCES = {
+        'Hà Nội': 'local',
+        'Hải Phòng': 'region', 'Quảng Ninh': 'region', 'Bắc Ninh': 'region', 'Bắc Giang': 'region',
+        'Hải Dương': 'region', 'Hưng Yên': 'region', 'Thái Bình': 'region', 'Nam Định': 'region',
+        'Ninh Bình': 'region', 'Hà Nam': 'region', 'Phú Thọ': 'region', 'Vĩnh Phúc': 'region',
+        'Thái Nguyên': 'region', 'Tuyên Quang': 'region', 'Lạng Sơn': 'region', 'Cao Bằng': 'region',
+        'Bắc Kạn': 'region', 'Hà Giang': 'region', 'Lào Cai': 'region', 'Yên Bái': 'region',
+        'Sơn La': 'region', 'Điện Biên': 'region', 'Lai Châu': 'region', 'Hòa Bình': 'region',
+        // Trung + Nam → inter
+        'Thanh Hóa': 'inter', 'Nghệ An': 'inter', 'Hà Tĩnh': 'inter', 'Quảng Bình': 'inter',
+        'Quảng Trị': 'inter', 'Thừa Thiên Huế': 'inter', 'Đà Nẵng': 'inter', 'Quảng Nam': 'inter',
+        'Quảng Ngãi': 'inter', 'Bình Định': 'inter', 'Phú Yên': 'inter', 'Khánh Hòa': 'inter',
+        'Ninh Thuận': 'inter', 'Bình Thuận': 'inter', 'Kon Tum': 'inter', 'Gia Lai': 'inter',
+        'Đắk Lắk': 'inter', 'Đắk Nông': 'inter', 'Lâm Đồng': 'inter',
+        'TP. Hồ Chí Minh': 'inter', 'Bình Dương': 'inter', 'Đồng Nai': 'inter', 'Bà Rịa - Vũng Tàu': 'inter',
+        'Long An': 'inter', 'Tây Ninh': 'inter', 'Bình Phước': 'inter', 'Tiền Giang': 'inter',
+        'Bến Tre': 'inter', 'Vĩnh Long': 'inter', 'Trà Vinh': 'inter', 'Cần Thơ': 'inter',
+        'Đồng Tháp': 'inter', 'An Giang': 'inter', 'Kiên Giang': 'inter', 'Hậu Giang': 'inter',
+        'Sóc Trăng': 'inter', 'Bạc Liêu': 'inter', 'Cà Mau': 'inter'
+    };
+
     // ============================================================================
     // DOM References
     // ============================================================================
@@ -143,6 +171,7 @@
     function validateForm() {
         const name = form.querySelector('#orderName').value.trim();
         const phone = form.querySelector('#orderPhone').value.trim();
+        const province = form.querySelector('#orderProvince')?.value;
 
         if (!name) {
             showError('Vui lòng nhập họ tên');
@@ -163,6 +192,13 @@
             showError('Số điện thoại không hợp lệ');
             form.querySelector('#orderPhone').classList.add('error');
             form.querySelector('#orderPhone').focus();
+            return false;
+        }
+
+        if (!province) {
+            showError('Vui lòng chọn tỉnh/thành phố');
+            form.querySelector('#orderProvince').classList.add('error');
+            form.querySelector('#orderProvince').focus();
             return false;
         }
 
@@ -229,6 +265,64 @@
     // Submit Order
     // ============================================================================
 
+    // ============================================================================
+    // Shipping & VAT Calculation
+    // ============================================================================
+
+    function getShippingFee(province) {
+        const zone = PROVINCES[province];
+        if (!zone) return 0;
+        return SHIPPING_RATES[zone] || 0;
+    }
+
+    function calculateBreakdown(tierPrice, province) {
+        const vat = Math.round(tierPrice * VAT_RATE);
+        const ship = getShippingFee(province);
+        const total = tierPrice + vat + ship;
+        return { price: tierPrice, vat, ship, total };
+    }
+
+    function updateBreakdownUI() {
+        const tier = form.querySelector('input[name="tier"]:checked')?.value || 'premium';
+        const province = form.querySelector('#orderProvince')?.value;
+        const tierPrice = TIER_PRICES[tier] || TIER_PRICES['premium'];
+        const breakdownEl = document.getElementById('orderBreakdown');
+
+        if (!province || !breakdownEl) {
+            if (breakdownEl) breakdownEl.style.display = 'none';
+            return;
+        }
+
+        const bd = calculateBreakdown(tierPrice, province);
+
+        document.getElementById('breakdownPrice').textContent = formatVND(bd.price);
+        document.getElementById('breakdownVat').textContent = formatVND(bd.vat);
+        document.getElementById('breakdownShip').textContent = formatVND(bd.ship);
+        document.getElementById('breakdownTotal').textContent = formatVND(bd.total);
+
+        breakdownEl.style.display = 'block';
+    }
+
+    // ============================================================================
+    // Populate Province Dropdown
+    // ============================================================================
+
+    function populateProvinces() {
+        const select = form.querySelector('#orderProvince');
+        if (!select) return;
+        Object.keys(PROVINCES).forEach(name => {
+            const opt = document.createElement('option');
+            opt.value = name;
+            opt.textContent = name;
+            select.appendChild(opt);
+        });
+        select.addEventListener('change', updateBreakdownUI);
+    }
+
+    // ============================================================================
+    // Submit Order
+    // ============================================================================
+
     async function submitOrder() {
         clearErrors();
 
@@ -236,18 +330,21 @@
 
         const name = form.querySelector('#orderName').value.trim();
         const phone = form.querySelector('#orderPhone').value.trim();
-        const address = form.querySelector('#orderAddress').value.trim();
+        const province = form.querySelector('#orderProvince')?.value || '';
+        const addressDetail = form.querySelector('#orderAddress').value.trim();
+        const fullAddress = addressDetail ? `${addressDetail}, ${province}` : province;
         const tier = form.querySelector('input[name="tier"]:checked')?.value || 'standard';
         const notes = form.querySelector('#orderNotes').value.trim();
         const refCode = getRefCode();
-        const amount = TIER_PRICES[tier] || TIER_PRICES['standard'];
+        const tierPrice = TIER_PRICES[tier] || TIER_PRICES['standard'];
+        const bd = calculateBreakdown(tierPrice, province);
 
         const payload = {
             full_name: name,
             phone: phone,
-            address: address || null,
+            address: fullAddress || null,
             selected_tier: tier,
-            notes: notes || null,
+            notes: notes ? `${notes} | VAT: ${formatVND(bd.vat)}, Ship: ${formatVND(bd.ship)}, Total: ${formatVND(bd.total)}` : `VAT: ${formatVND(bd.vat)}, Ship: ${formatVND(bd.ship)}, Total: ${formatVND(bd.total)}`,
             ref_code: refCode
         };
 
@@ -270,8 +367,8 @@
             if (response.ok) {
                 const data = await response.json();
                 const orderId = data[0]?.id || '';
-                console.log('[Order] ✅ Order submitted:', { name, phone, tier, refCode, orderId });
-                showPayment(tier, amount, orderId, phone, refCode);
+                console.log('[Order] ✅ Order submitted:', { name, phone, tier, refCode, orderId, total: bd.total });
+                showPayment(tier, bd.total, orderId, phone, refCode);
             } else {
                 const errorText = await response.text();
                 console.error('[Order] ❌ Failed:', response.status, errorText);
@@ -375,10 +472,19 @@
     // ============================================================================
 
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', interceptCTAButtons);
+        document.addEventListener('DOMContentLoaded', () => {
+            interceptCTAButtons();
+            populateProvinces();
+        });
     } else {
         interceptCTAButtons();
+        populateProvinces();
     }
+
+    // Listen for tier change to update breakdown
+    form.querySelectorAll('input[name="tier"]').forEach(radio => {
+        radio.addEventListener('change', updateBreakdownUI);
+    });
 
     window.OpenClawBoxOrder = {
         open: openModal,
