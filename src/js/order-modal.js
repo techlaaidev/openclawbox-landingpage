@@ -344,7 +344,9 @@
             phone: phone,
             address: fullAddress || null,
             selected_tier: tier,
-            notes: notes ? `${notes} | VAT: ${formatVND(bd.vat)}, Ship: ${formatVND(bd.ship)}, Total: ${formatVND(bd.total)}` : `VAT: ${formatVND(bd.vat)}, Ship: ${formatVND(bd.ship)}, Total: ${formatVND(bd.total)}`,
+            total_amount: bd.total,
+            shipping_fee: bd.ship,
+            notes: notes || null,
             ref_code: refCode
         };
 
