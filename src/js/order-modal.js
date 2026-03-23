@@ -260,8 +260,10 @@
     }
 
     function updateBreakdownUI() {
-        const tier = form.querySelector('input[name="tier"]:checked')?.value || 'premium';
-        const tierPrice = TIER_PRICES[tier] || TIER_PRICES['premium'];
+        const checkedRadio = form.querySelector('input[name="tier"]:checked');
+        const hiddenInput = form.querySelector('input[name="tier"][type="hidden"]');
+        const tier = checkedRadio?.value || hiddenInput?.value || 'premium';
+        const tierPrice = TIER_PRICES[tier] || 4999000;
         const breakdownEl = document.getElementById('orderBreakdown');
 
         if (!breakdownEl) return;
