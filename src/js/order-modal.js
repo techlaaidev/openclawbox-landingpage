@@ -101,6 +101,9 @@
         overlay.classList.add('active');
         document.body.classList.add('modal-open');
 
+        // Show breakdown
+        updateBreakdownUI();
+
         // Focus first input
         setTimeout(() => {
             const firstInput = form.querySelector('input[type="text"]');
@@ -250,35 +253,23 @@
     // Shipping & VAT Calculation
     // ============================================================================
 
-    function getShippingFee(province) {
-        const zone = PROVINCES[province];
-        if (!zone) return 0;
-        return SHIPPING_RATES[zone] || 0;
-    }
-
-    function calculateBreakdown(tierPrice, province) {
+    function calculateBreakdown(tierPrice) {
         const vat = Math.round(tierPrice * VAT_RATE);
-        const ship = getShippingFee(province);
-        const total = tierPrice + vat + ship;
-        return { price: tierPrice, vat, ship, total };
+        const total = tierPrice + vat;
+        return { price: tierPrice, vat, total };
     }
 
     function updateBreakdownUI() {
         const tier = form.querySelector('input[name="tier"]:checked')?.value || 'premium';
-        const province = form.querySelector('#orderProvince')?.value;
         const tierPrice = TIER_PRICES[tier] || TIER_PRICES['premium'];
         const breakdownEl = document.getElementById('orderBreakdown');
 
-        if (!province || !breakdownEl) {
-            if (breakdownEl) breakdownEl.style.display = 'none';
-            return;
-        }
+        if (!breakdownEl) return;
 
-        const bd = calculateBreakdown(tierPrice, province);
+        const bd = calculateBreakdown(tierPrice);
 
         document.getElementById('breakdownPrice').textContent = formatVND(bd.price);
         document.getElementById('breakdownVat').textContent = formatVND(bd.vat);
-        document.getElementById('breakdownShip').textContent = formatVND(bd.ship);
         document.getElementById('breakdownTotal').textContent = formatVND(bd.total);
 
         breakdownEl.style.display = 'block';
@@ -318,7 +309,7 @@
         const notes = form.querySelector('#orderNotes').value.trim();
         const refCode = getRefCode();
         const tierPrice = TIER_PRICES[tier] || 4999000;
-        const bd = calculateBreakdown(tierPrice, province);
+        const bd = calculateBreakdown(tierPrice);
 
         const payload = {
             full_name: name,
@@ -326,7 +317,6 @@
             address: fullAddress || null,
             selected_tier: tier,
             total_amount: bd.total,
-            shipping_fee: bd.ship,
             notes: notes || null,
             ref_code: refCode
         };
