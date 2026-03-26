@@ -282,6 +282,8 @@
         const tier = form.querySelector('input[name="tier"]:checked')?.value || 'premium';
         const tierPrice = TIER_PRICES[tier] || TIER_PRICES['premium'];
         const breakdownEl = document.getElementById('orderBreakdown');
+        const expressRow = document.getElementById('breakdownExpressRow');
+        const expressCheckbox = document.getElementById('expressCheckbox');
 
         if (!breakdownEl) return;
 
@@ -291,7 +293,27 @@
         document.getElementById('breakdownVat').textContent = formatVND(bd.vat);
         document.getElementById('breakdownTotal').textContent = formatVND(bd.total);
 
+        // Show/hide express row
+        if (expressRow) {
+            expressRow.style.display = (expressCheckbox && expressCheckbox.checked) ? 'flex' : 'none';
+        }
+
         breakdownEl.style.display = 'block';
+    }
+
+    function updateExpressOption() {
+        const province = form.querySelector('#orderProvince')?.value || '';
+        const expressOption = document.getElementById('expressOption');
+        const expressCheckbox = document.getElementById('expressCheckbox');
+        if (!expressOption) return;
+
+        if (province === 'Hà Nội') {
+            expressOption.style.display = 'block';
+        } else {
+            expressOption.style.display = 'none';
+            if (expressCheckbox) expressCheckbox.checked = false;
+        }
+        updateBreakdownUI();
     }
 
     // ============================================================================
@@ -307,7 +329,16 @@
             opt.textContent = name;
             select.appendChild(opt);
         });
-        select.addEventListener('change', updateBreakdownUI);
+        select.addEventListener('change', () => {
+            updateExpressOption();
+            updateBreakdownUI();
+        });
+
+        // Express checkbox listener
+        const expressCheckbox = document.getElementById('expressCheckbox');
+        if (expressCheckbox) {
+            expressCheckbox.addEventListener('change', updateBreakdownUI);
+        }
     }
 
     // ============================================================================
