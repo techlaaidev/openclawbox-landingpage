@@ -273,6 +273,50 @@ textarea.order-form-input {
 }
 
 /* ==========================================================================
+   Express Delivery Option
+   ========================================================================== */
+
+.order-express-option {
+  margin-bottom: var(--space-5);
+  animation: fadeUp var(--duration-normal) var(--ease-out-quart);
+}
+
+.order-express-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: #FFF7ED;
+  border: 1.5px solid #FED7AA;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  color: #9A3412;
+  transition: all var(--duration-fast) var(--ease-out-quart);
+}
+
+.order-express-label:hover {
+  border-color: #FB923C;
+  background: #FFF2E5;
+}
+
+.order-express-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #EA580C;
+  flex-shrink: 0;
+}
+
+.order-breakdown-express {
+  color: #9A3412 !important;
+}
+
+.order-breakdown-express em {
+  font-size: var(--text-xs);
+  color: var(--color-gray-400);
+}
+
+/* ==========================================================================
    Order Breakdown
    ========================================================================== */
 

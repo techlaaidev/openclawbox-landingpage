@@ -794,6 +794,14 @@
             </div>
 
             <input type="hidden" name="tier" value="premium">
+
+            <!-- Express Delivery (Hà Nội only) -->
+            <div class="order-express-option" id="expressOption" style="display:none;">
+              <label class="order-express-label">
+                <input type="checkbox" id="expressCheckbox">
+                <span>🚀 Nhận hàng hoả tốc từ 1 đến 4 giờ (+100.000₫, thu khi nhận hàng)</span>
+              </label>
+            </div>
             <div class="order-form-group">
               <label class="order-form-label">Gói đã chọn</label>
               <div style="padding: 12px 16px; background: rgba(189,45,45,0.06); border-radius: 8px; font-weight: 600; color: var(--color-primary);">
@@ -818,6 +826,10 @@
                 <span id="breakdownVat">0₫</span>
               </div>
 
+              <div class="order-breakdown-row order-breakdown-express" id="breakdownExpressRow" style="display:none;">
+                <span>Phí giao hoả tốc</span>
+                <span>100.000₫ <em>(thu khi nhận)</em></span>
+              </div>
               <div class="order-breakdown-row order-breakdown-total">
                 <span>Tổng thanh toán</span>
                 <span id="breakdownTotal">0₫</span>
