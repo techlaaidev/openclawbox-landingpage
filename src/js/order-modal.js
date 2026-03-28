@@ -13,7 +13,7 @@
     const TABLE_NAME = 'orders';
 
     // Bank transfer config
-    const BANK_ACCOUNT = '39156868';
+    const BANK_ACCOUNT = 'MS01T17213302551927';
     const BANK_NAME = 'Techcombank';
     const BANK_HOLDER = 'CONG TY TNHH TECHLA AI';
 
