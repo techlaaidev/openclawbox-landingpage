@@ -67,7 +67,7 @@
     const TIER_PRICES = {
         'starter': 1199000,
         'standard': 2999000,
-        'premium': 4999000,
+        'premium': 2000,
         'enterprise': 7999000
     };
 
@@ -120,6 +120,16 @@
     function closeModal() {
         overlay.classList.remove('active');
         document.body.classList.remove('modal-open');
+
+        // Stop polling when modal closes
+        if (pollingInterval) {
+            clearInterval(pollingInterval);
+            pollingInterval = null;
+        }
+
+        // Reset confirmed view
+        const confirmedView = document.getElementById('orderPaymentConfirmed');
+        if (confirmedView) confirmedView.classList.remove('visible');
     }
 
     // Close on overlay click
@@ -436,10 +446,57 @@
         formView.style.display = 'none';
         successView.classList.add('visible');
 
+        // Start polling for payment confirmation
+        startPaymentPolling(orderId);
+
         // Reset form for next time
         form.reset();
         const defaultTier = form.querySelector('input[name="tier"][value="premium"]');
         if (defaultTier) defaultTier.checked = true;
+    }
+
+    // ============================================================================
+    // Payment Polling
+    // ============================================================================
+
+    let pollingInterval = null;
+
+    function startPaymentPolling(orderId) {
+        if (pollingInterval) clearInterval(pollingInterval);
+
+        pollingInterval = setInterval(async () => {
+            try {
+                const response = await fetch(
+                    `${SUPABASE_URL}/rest/v1/orders?id=eq.${orderId}&select=payment_status`,
+                    {
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                        }
+                    }
+                );
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data[0]?.payment_status === 'paid') {
+                        clearInterval(pollingInterval);
+                        pollingInterval = null;
+                        showPaymentConfirmed();
+                    }
+                }
+            } catch (err) {
+                console.error('[Order] Polling error:', err.message);
+            }
+        }, 5000);
+    }
+
+    function showPaymentConfirmed() {
+        // Hide QR payment view
+        successView.classList.remove('visible');
+
+        // Show confirmed view
+        const confirmedView = document.getElementById('orderPaymentConfirmed');
+        if (confirmedView) confirmedView.classList.add('visible');
     }
 
     // ============================================================================
