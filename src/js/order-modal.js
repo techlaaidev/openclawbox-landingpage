@@ -5,12 +5,13 @@
  */
 
 (function () {
-    // ============================================================================
-    // CONFIG — Same Supabase project as affiliate.js
-    // ============================================================================
-    const SUPABASE_URL = 'https://lyofqtfthsylmpxktcky.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5b2ZxdGZ0aHN5bG1weGt0Y2t5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDI1MzEsImV4cCI6MjA4ODU3ODUzMX0.dlUr8xnI-j0KYJLpfOppkb0YDiGiTj5bTquUI-gX0wk';
-    const TABLE_NAME = 'orders';
+  // ============================================================================
+  // CONFIG — Same Supabase project as affiliate.js
+  // ============================================================================
+  const SUPABASE_URL = "https://lyofqtfthsylmpxktcky.supabase.co";
+  const SUPABASE_ANON_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5b2ZxdGZ0aHN5bG1weGt0Y2t5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDI1MzEsImV4cCI6MjA4ODU3ODUzMX0.dlUr8xnI-j0KYJLpfOppkb0YDiGiTj5bTquUI-gX0wk";
+  const TABLE_NAME = "orders";
 
     // Bank transfer config
     const BANK_ACCOUNT = 'MS01T17213302551927';
@@ -59,7 +60,8 @@
     const refBadge = document.getElementById('orderRefBadge');
     const refCodeSpan = document.getElementById('orderRefCode');
 
-    if (!overlay || !form) return;
+  // Shipping rates (Viettel Post Standard, ~1kg, from Hanoi)
+  const SHIPPING_RATES = { local: 16500, region: 39600, inter: 46200 };
 
     // ============================================================================
     // Tier Mapping
@@ -72,30 +74,28 @@
         'premium': 'Premium'
     };
 
-    // ============================================================================
-    // Modal Open/Close
-    // ============================================================================
+  if (!overlay || !form) return;
 
-    function openModal(tier) {
-        // Pre-select tier
-        if (tier) {
-            const radio = form.querySelector(`input[name="tier"][value="${tier}"]`);
-            if (radio) radio.checked = true;
-        }
+  // ============================================================================
+  // Tier Mapping
+  // ============================================================================
+  const TIER_PRICES = {
+    starter: 1199000,
+    standard: 2999000,
+    premium: 4999000,
+    enterprise: 7999000,
+  };
 
-        // Show ref code badge if exists
-        const refCode = getRefCode();
-        if (refCode && refBadge && refCodeSpan) {
-            refCodeSpan.textContent = refCode;
-            refBadge.classList.add('visible');
-        }
+  const TIER_LABELS = {
+    starter: "Starter",
+    standard: "Standard",
+    premium: "Premium",
+    enterprise: "Enterprise",
+  };
 
-        // Reset state
-        errorMsg.classList.remove('visible');
-        successView.classList.remove('visible');
-        formView.style.display = 'block';
-        submitBtn.classList.remove('loading');
-        submitBtn.disabled = false;
+  // ============================================================================
+  // Modal Open/Close
+  // ============================================================================
 
         // Show modal
         overlay.classList.add('active');
@@ -111,29 +111,33 @@
         }, 300);
     }
 
-    function closeModal() {
-        overlay.classList.remove('active');
-        document.body.classList.remove('modal-open');
+    // Show ref code badge if exists
+    const refCode = getRefCode();
+    if (refCode && refBadge && refCodeSpan) {
+      refCodeSpan.textContent = refCode;
+      refBadge.classList.add("visible");
     }
 
-    // Close on overlay click
-    overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closeModal();
-    });
+    // Reset state
+    errorMsg.classList.remove("visible");
+    successView.classList.remove("visible");
+    formView.style.display = "block";
+    submitBtn.classList.remove("loading");
+    submitBtn.disabled = false;
 
-    // Close on button
-    closeBtn.addEventListener('click', closeModal);
+    // Show modal
+    overlay.classList.add("active");
+    document.body.classList.add("modal-open");
 
-    // Close on Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && overlay.classList.contains('active')) {
-            closeModal();
-        }
-    });
+    // Show breakdown
+    updateBreakdownUI();
 
-    // ============================================================================
-    // Intercept CTA Buttons
-    // ============================================================================
+    // Focus first input
+    setTimeout(() => {
+      const firstInput = form.querySelector('input[type="text"]');
+      if (firstInput) firstInput.focus();
+    }, 300);
+  }
 
     function interceptCTAButtons() {
         const orderButtons = document.querySelectorAll('#premiumOrderBtn, .hero-cta .btn-primary, .cta-buttons .btn-primary');
@@ -145,36 +149,33 @@
             });
         });
     }
+  });
 
-    // ============================================================================
-    // Form Validation
-    // ============================================================================
+  // ============================================================================
+  // Intercept CTA Buttons
+  // ============================================================================
 
     function validateForm() {
         const name = form.querySelector('#orderName').value.trim();
         const phone = form.querySelector('#orderPhone').value.trim();
         const province = form.querySelector('#orderProvince')?.value;
 
-        if (!name) {
-            showError('Vui lòng nhập họ tên');
-            form.querySelector('#orderName').classList.add('error');
-            form.querySelector('#orderName').focus();
-            return false;
-        }
+    orderButtons.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
 
-        if (!phone) {
-            showError('Vui lòng nhập số điện thoại');
-            form.querySelector('#orderPhone').classList.add('error');
-            form.querySelector('#orderPhone').focus();
-            return false;
-        }
+        const tierCard = btn.closest(".pricing-tier");
+        let tier = "standard";
 
-        const phoneClean = phone.replace(/[\s.-]/g, '');
-        if (!/^(0|\+84)\d{8,10}$/.test(phoneClean)) {
-            showError('Số điện thoại không hợp lệ');
-            form.querySelector('#orderPhone').classList.add('error');
-            form.querySelector('#orderPhone').focus();
-            return false;
+        if (tierCard) {
+          const tierName = tierCard.querySelector(".pricing-tier-name");
+          if (tierName) {
+            const name = tierName.textContent.toLowerCase().trim();
+            if (name === "starter") tier = "starter";
+            else if (name === "enterprise") tier = "enterprise";
+            else if (name === "premium") tier = "premium";
+            else tier = "standard";
+          }
         }
 
         if (!province) {
@@ -187,51 +188,84 @@
         return true;
     }
 
-    function showError(msg) {
-        errorMsg.textContent = msg;
-        errorMsg.classList.add('visible');
+    if (!phone) {
+      showError("Vui lòng nhập số điện thoại");
+      form.querySelector("#orderPhone").classList.add("error");
+      form.querySelector("#orderPhone").focus();
+      return false;
     }
 
-    function clearErrors() {
-        errorMsg.classList.remove('visible');
-        form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+    const phoneClean = phone.replace(/[\s.-]/g, "");
+    if (!/^(0|\+84)\d{8,10}$/.test(phoneClean)) {
+      showError("Số điện thoại không hợp lệ");
+      form.querySelector("#orderPhone").classList.add("error");
+      form.querySelector("#orderPhone").focus();
+      return false;
     }
 
-    // ============================================================================
-    // Get Ref Code from Affiliate Tracking
-    // ============================================================================
-
-    function getRefCode() {
-        if (window.OpenClawBoxAffiliate && window.OpenClawBoxAffiliate.getRefCode) {
-            return window.OpenClawBoxAffiliate.getRefCode();
-        }
-        return null;
+    if (!province) {
+      showError("Vui lòng chọn tỉnh/thành phố");
+      form.querySelector("#orderProvince").classList.add("error");
+      form.querySelector("#orderProvince").focus();
+      return false;
     }
 
-    // ============================================================================
-    // Format Currency
-    // ============================================================================
+    return true;
+  }
+
+  function showError(msg) {
+    errorMsg.textContent = msg;
+    errorMsg.classList.add("visible");
+  }
+
+  function clearErrors() {
+    errorMsg.classList.remove("visible");
+    form
+      .querySelectorAll(".error")
+      .forEach((el) => el.classList.remove("error"));
+  }
+
+  // ============================================================================
+  // Get Ref Code from Affiliate Tracking
+  // ============================================================================
+
+  function getRefCode() {
+    if (window.OpenClawBoxAffiliate && window.OpenClawBoxAffiliate.getRefCode) {
+      return window.OpenClawBoxAffiliate.getRefCode();
+    }
+    return null;
+  }
+
+  // ============================================================================
+  // Format Currency
+  // ============================================================================
 
     function formatVND(amount) {
         const num = Number(amount) || 0;
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '₫';
     }
 
-    // ============================================================================
-    // Generate Transfer Description
-    // ============================================================================
+    breakdownEl.style.display = "block";
+  }
 
-    function generateTransferDesc(orderId, phone, refCode) {
-        const shortId = orderId ? orderId.substring(0, 8).toUpperCase() : '';
-        const phoneClean = phone ? phone.replace(/[\s.-]/g, '') : '';
-        let desc = `OCB ${shortId} ${phoneClean}`;
-        if (refCode) desc += ` ${refCode}`;
-        return desc;
+  function updateExpressOption() {
+    const province = form.querySelector("#orderProvince")?.value || "";
+    const expressOption = document.getElementById("expressOption");
+    const expressCheckbox = document.getElementById("expressCheckbox");
+    if (!expressOption) return;
+
+    if (province === "Hà Nội") {
+      expressOption.style.display = "block";
+    } else {
+      expressOption.style.display = "none";
+      if (expressCheckbox) expressCheckbox.checked = false;
     }
+    updateBreakdownUI();
+  }
 
-    // ============================================================================
-    // Generate QR URL
-    // ============================================================================
+  // ============================================================================
+  // Populate Province Dropdown
+  // ============================================================================
 
     function generateQRUrl(amount, description) {
         const safeAmount = Number(amount) || 4999000;
@@ -244,10 +278,11 @@
         });
         return `https://qr.sepay.vn/img?${params.toString()}`;
     }
+  }
 
-    // ============================================================================
-    // Submit Order
-    // ============================================================================
+  // ============================================================================
+  // Submit Order
+  // ============================================================================
 
     // ============================================================================
     // Shipping & VAT Calculation
@@ -331,7 +366,7 @@
     async function submitOrder() {
         clearErrors();
 
-        if (!validateForm()) return;
+    if (!validateForm()) return;
 
         const name = form.querySelector('#orderName').value.trim();
         const phone = form.querySelector('#orderPhone').value.trim();
@@ -354,21 +389,21 @@
             ref_code: refCode
         };
 
-        // Show loading
-        submitBtn.classList.add('loading');
-        submitBtn.disabled = true;
+    // Show loading
+    submitBtn.classList.add("loading");
+    submitBtn.disabled = true;
 
-        try {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE_NAME}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Prefer': 'return=representation'
-                },
-                body: JSON.stringify(payload)
-            });
+    try {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE_NAME}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify(payload),
+      });
 
             if (response.ok) {
                 const data = await response.json();
@@ -389,23 +424,24 @@
             submitBtn.disabled = false;
         }
     }
+  }
 
-    // ============================================================================
-    // Payment View (QR Code)
-    // ============================================================================
+  // ============================================================================
+  // Payment View (QR Code)
+  // ============================================================================
 
-    function showPayment(tier, amount, orderId, phone, refCode) {
-        const transferDesc = generateTransferDesc(orderId, phone, refCode);
-        const qrUrl = generateQRUrl(amount, transferDesc);
+  function showPayment(tier, amount, orderId, phone, refCode) {
+    const transferDesc = generateTransferDesc(orderId, phone, refCode);
+    const qrUrl = generateQRUrl(amount, transferDesc);
 
-        // Update payment view elements
-        const qrImg = document.getElementById('paymentQRImg');
-        const amountEl = document.getElementById('paymentAmount');
-        const tierEl = document.getElementById('paymentTier');
-        const descEl = document.getElementById('paymentDesc');
-        const bankEl = document.getElementById('paymentBank');
-        const holderEl = document.getElementById('paymentHolder');
-        const accountEl = document.getElementById('paymentAccount');
+    // Update payment view elements
+    const qrImg = document.getElementById("paymentQRImg");
+    const amountEl = document.getElementById("paymentAmount");
+    const tierEl = document.getElementById("paymentTier");
+    const descEl = document.getElementById("paymentDesc");
+    const bankEl = document.getElementById("paymentBank");
+    const holderEl = document.getElementById("paymentHolder");
+    const accountEl = document.getElementById("paymentAccount");
 
         if (qrImg) qrImg.src = qrUrl;
         if (amountEl) amountEl.textContent = formatVND(amount);
@@ -415,67 +451,134 @@
         if (holderEl) holderEl.textContent = BANK_HOLDER;
         if (accountEl) accountEl.textContent = BANK_ACCOUNT.replace(/(.{4})/g, '$1 ').trim();
 
-        // Switch views
-        formView.style.display = 'none';
-        successView.classList.add('visible');
+    // Switch views
+    formView.style.display = "none";
+    successView.classList.add("visible");
 
-        // Reset form for next time
-        form.reset();
-        const defaultTier = form.querySelector('input[name="tier"][value="premium"]');
-        if (defaultTier) defaultTier.checked = true;
-    }
+    // Start polling for payment confirmation
+    startPaymentPolling(orderId);
 
-    // ============================================================================
-    // Copy to clipboard helper
-    // ============================================================================
+    // Reset form for next time
+    form.reset();
+    const defaultTier = form.querySelector(
+      'input[name="tier"][value="premium"]',
+    );
+    if (defaultTier) defaultTier.checked = true;
+  }
 
-    window.copyPaymentInfo = function (text, btnEl) {
-        navigator.clipboard.writeText(text).then(() => {
-            const original = btnEl.textContent;
-            btnEl.textContent = 'Đã copy ✓';
-            btnEl.classList.add('copied');
-            setTimeout(() => {
-                btnEl.textContent = original;
-                btnEl.classList.remove('copied');
-            }, 2000);
-        }).catch(() => {
-            // Fallback
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
+  // ============================================================================
+  // Payment Polling
+  // ============================================================================
 
-            const original = btnEl.textContent;
-            btnEl.textContent = 'Đã copy ✓';
-            btnEl.classList.add('copied');
-            setTimeout(() => {
-                btnEl.textContent = original;
-                btnEl.classList.remove('copied');
-            }, 2000);
-        });
-    };
+  let pollingInterval = null;
 
-    // ============================================================================
-    // Event Listeners
-    // ============================================================================
+  function startPaymentPolling(orderId) {
+    if (pollingInterval) clearInterval(pollingInterval);
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        submitOrder();
+    pollingInterval = setInterval(async () => {
+      try {
+        const response = await fetch(
+          `${SUPABASE_URL}/rest/v1/orders?id=eq.${orderId}&select=payment_status`,
+          {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            },
+          },
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data[0]?.payment_status === "paid") {
+            clearInterval(pollingInterval);
+            pollingInterval = null;
+            showPaymentConfirmed();
+          }
+        }
+      } catch (err) {
+        console.error("[Order] Polling error:", err.message);
+      }
+    }, 5000);
+  }
+
+  function showPaymentConfirmed() {
+    // Hide QR payment view
+    successView.classList.remove("visible");
+
+    // Show confirmed view
+    const confirmedView = document.getElementById("orderPaymentConfirmed");
+    if (confirmedView) confirmedView.classList.add("visible");
+  }
+
+  // ============================================================================
+  // Copy to clipboard helper
+  // ============================================================================
+
+  window.copyPaymentInfo = function (text, btnEl) {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        const original = btnEl.textContent;
+        btnEl.textContent = "Đã copy ✓";
+        btnEl.classList.add("copied");
+        setTimeout(() => {
+          btnEl.textContent = original;
+          btnEl.classList.remove("copied");
+        }, 2000);
+      })
+      .catch(() => {
+        // Fallback
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+
+        const original = btnEl.textContent;
+        btnEl.textContent = "Đã copy ✓";
+        btnEl.classList.add("copied");
+        setTimeout(() => {
+          btnEl.textContent = original;
+          btnEl.classList.remove("copied");
+        }, 2000);
+      });
+  };
+
+  // ============================================================================
+  // Event Listeners
+  // ============================================================================
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    submitOrder();
+  });
+
+  form.querySelectorAll(".order-form-input").forEach((input) => {
+    input.addEventListener("input", () => {
+      input.classList.remove("error");
+      errorMsg.classList.remove("visible");
     });
+  });
 
-    form.querySelectorAll('.order-form-input').forEach(input => {
-        input.addEventListener('input', () => {
-            input.classList.remove('error');
-            errorMsg.classList.remove('visible');
-        });
+  // ============================================================================
+  // Initialize
+  // ============================================================================
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      interceptCTAButtons();
+      populateProvinces();
     });
+  } else {
+    interceptCTAButtons();
+    populateProvinces();
+  }
 
-    // ============================================================================
-    // Initialize
-    // ============================================================================
+  // Listen for tier change to update breakdown
+  form.querySelectorAll('input[name="tier"]').forEach((radio) => {
+    radio.addEventListener("change", updateBreakdownUI);
+  });
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {

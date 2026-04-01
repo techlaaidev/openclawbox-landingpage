@@ -1,18 +1,18 @@
 /* ==========================================================================
-   Pricing Tiers - 2x2 Grid Layout
+   Pricing Tiers - 3 Column Grid Layout
    ========================================================================== */
 
 .pricing-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-6);
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .pricing-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     align-items: stretch;
   }
 }

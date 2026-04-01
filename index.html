@@ -903,8 +903,33 @@
           ⚠️ Vui lòng nhập <strong>đúng nội dung chuyển khoản</strong> để đơn hàng được xử lý nhanh nhất.
         </p>
 
+        <!-- Polling status indicator -->
+        <div class="order-payment-waiting" id="paymentWaiting">
+          <div class="order-payment-waiting-spinner"></div>
+          <span>Đang chờ xác nhận thanh toán...</span>
+        </div>
+
         <a href="https://zalo.me/0868287651" target="_blank" rel="noopener" class="order-success-zalo">
           Chat Zalo xác nhận đã chuyển khoản
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Payment Confirmed View -->
+      <div class="order-payment-confirmed" id="orderPaymentConfirmed">
+        <div class="order-confirmed-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="order-confirmed-title">Thanh toán thành công!</h3>
+        <p class="order-confirmed-text">
+          Cảm ơn bạn đã đặt hàng. Bộ phận chăm sóc khách hàng của chúng tôi sẽ liên lạc lại bạn trong thời gian sớm nhất.
+        </p>
+        <a href="https://zalo.me/0868287651" target="_blank" rel="noopener" class="order-success-zalo">
+          Liên hệ Zalo hỗ trợ
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
@@ -941,6 +966,10 @@
   <script src="src/js/affiliate.js?v=20260328"></script>
   <script src="src/js/main.js?v=20260328"></script>
   <script src="src/js/order-modal.js?v=20260328"></script>
+  <script src="src/js/i18n.js?v=20260320"></script>
+  <script src="src/js/affiliate.js?v=20260320"></script>
+  <script src="src/js/main.js?v=20260320"></script>
+  <script src="src/js/order-modal.js?v=20260320"></script>
   <script>
     // Partner page - no announcement bar or promo popup
   </script>
