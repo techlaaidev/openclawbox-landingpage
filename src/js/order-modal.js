@@ -114,7 +114,7 @@
   const TIER_PRICES = {
     starter: 1199000,
     standard: 2999000,
-    premium: 4999999,
+    premium: 4999000,
     enterprise: 7999000,
   };
 
