@@ -112,17 +112,11 @@
   // Tier Mapping
   // ============================================================================
   const TIER_PRICES = {
-    starter: 1199000,
-    standard: 2999000,
-    premium: 4999000,
-    enterprise: 7999000,
+    promax: 7990000,
   };
 
   const TIER_LABELS = {
-    starter: "Starter",
-    standard: "Standard",
-    premium: "Premium",
-    enterprise: "Enterprise",
+    promax: "ProMax",
   };
 
   // ============================================================================
@@ -206,22 +200,7 @@
     orderButtons.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         e.preventDefault();
-
-        const tierCard = btn.closest(".pricing-tier");
-        let tier = "standard";
-
-        if (tierCard) {
-          const tierName = tierCard.querySelector(".pricing-tier-name");
-          if (tierName) {
-            const name = tierName.textContent.toLowerCase().trim();
-            if (name === "starter") tier = "starter";
-            else if (name === "enterprise") tier = "enterprise";
-            else if (name === "premium") tier = "premium";
-            else tier = "standard";
-          }
-        }
-
-        openModal(tier);
+        openModal("promax");
       });
     });
   }
@@ -341,8 +320,8 @@
 
   function updateBreakdownUI() {
     const tier =
-      form.querySelector('input[name="tier"]:checked')?.value || "premium";
-    const tierPrice = TIER_PRICES[tier] || TIER_PRICES["premium"];
+      form.querySelector('input[name="tier"]:checked')?.value || "promax";
+    const tierPrice = TIER_PRICES[tier] || TIER_PRICES["promax"];
     const breakdownEl = document.getElementById("orderBreakdown");
     const expressRow = document.getElementById("breakdownExpressRow");
     const expressCheckbox = document.getElementById("expressCheckbox");
@@ -421,10 +400,10 @@
       ? `${addressDetail}, ${province}`
       : province;
     const tier =
-      form.querySelector('input[name="tier"]:checked')?.value || "standard";
+      form.querySelector('input[name="tier"]:checked')?.value || "promax";
     const notes = form.querySelector("#orderNotes").value.trim();
     const refCode = getRefCode();
-    const tierPrice = TIER_PRICES[tier] || TIER_PRICES["standard"];
+    const tierPrice = TIER_PRICES[tier] || TIER_PRICES["promax"];
     const bd = calculateBreakdown(tierPrice);
 
     const payload = {
@@ -516,7 +495,7 @@
     // Reset form for next time
     form.reset();
     const defaultTier = form.querySelector(
-      'input[name="tier"][value="premium"]',
+      'input[name="tier"][value="promax"]',
     );
     if (defaultTier) defaultTier.checked = true;
   }

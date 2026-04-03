@@ -34,3 +34,4 @@ temp/
 docs/_build/
 
 .pi/
+.claude/
