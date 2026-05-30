@@ -16,9 +16,9 @@ const translations = {
     "hero.badge": "Plug & Play • Sẵn sàng sử dụng",
     "hero.title": "OpenClawBox",
     "hero.subtitle": "AI Agent cho doanh nghiệp — Thiết lập sẵn trên Mini PC.<br>Tài chính, Marketing, Sales — Vận hành tự động 24/7.",
-    "hero.price": "4.999.000₫",
-    "hero.price.note": "Miễn phí vận chuyển toàn quốc",
-    "hero.cta.order": "Đặt hàng ngay",
+    "hero.price": "Tạm ngưng phân phối",
+    "hero.price.note": "Nếu bạn thực sự quan tâm, vui lòng liên hệ: zalo 0868287651",
+    "hero.cta.order": "Liên hệ Zalo",
     "hero.cta.learn": "Tìm hiểu thêm",
 
     // Value Props
@@ -95,11 +95,11 @@ const translations = {
     "how.4.desc": "Kết nối các nền tảng và để OpenClawBox tự động hóa 24/7!",
 
     // Pricing
-    "pricing.title": "Đặt Hàng Ngay",
-    "pricing.subtitle": "Đầu tư một lần, sở hữu AI Agent vĩnh viễn",
+    "pricing.title": "Openclaw-box tạm ngưng phân phối",
+    "pricing.subtitle": "Sản phẩm Openclaw-box đã tạm ngưng phân phối.",
     "pricing.name": "OpenClawBox",
-    "pricing.price": "2.999.000₫",
-    "pricing.period": "Thanh toán một lần • Miễn phí vận chuyển",
+    "pricing.price": "Tạm ngưng phân phối",
+    "pricing.period": "Nếu bạn thực sự quan tâm, vui lòng liên hệ: zalo 0868287651",
     "pricing.feature.1": "Mini PC Intel Celeron J1800, 4GB RAM, 32GB mSATA",
     "pricing.feature.2": "OpenClawBox AI Agent thiết lập sẵn",
     "pricing.feature.3": "11 module AI Agent chuyên biệt",
@@ -107,7 +107,7 @@ const translations = {
     "pricing.feature.5": "Bảo hành phần cứng 12 tháng",
     "pricing.feature.6": "Hỗ trợ kỹ thuật miễn phí",
     "pricing.feature.7": "Cập nhật AI Agent trọn đời",
-    "pricing.cta": "Đặt hàng ngay",
+    "pricing.cta": "Liên hệ Zalo",
     "pricing.contact": "Liên hệ:",
 
     // FAQ
@@ -129,10 +129,10 @@ const translations = {
     "faq.7.a": "Miễn phí vận chuyển toàn quốc. Giao hàng: 2-3 ngày (Hà Nội/HCM), 3-5 ngày (các tỉnh thành khác).",
 
     // CTA
-    "cta.title": "Sẵn Sàng Tự Động Hóa?",
-    "cta.text": "Tham gia cùng hàng trăm doanh nghiệp đang vận hành với OpenClawBox AI Agent.<br>Thiết lập sẵn, sẵn sàng sử dụng — Chỉ 4.999.000₫",
-    "cta.order": "Đặt hàng ngay",
-    "cta.consult": "Tư vấn miễn phí",
+    "cta.title": "Openclaw-box tạm ngưng phân phối",
+    "cta.text": "Sản phẩm Openclaw-box đã tạm ngưng phân phối.<br>Nếu bạn thực sự quan tâm, vui lòng liên hệ: zalo 0868287651",
+    "cta.order": "Liên hệ Zalo",
+    "cta.consult": "Tư vấn qua Zalo",
 
     // Footer
     "footer.tagline": "AI Agent cho doanh nghiệp. Thiết lập sẵn trên Mini PC. Tự động hóa 24/7.",
@@ -167,9 +167,9 @@ const translations = {
     "hero.badge": "Plug & Play • Ready to Deploy",
     "hero.title": "OpenClawBox",
     "hero.subtitle": "AI Agent for Business — Pre-configured on Mini PC.<br>Finance, Marketing, Sales — Running 24/7 Automatically.",
-    "hero.price": "2,999,000₫",
-    "hero.price.note": "Free shipping nationwide",
-    "hero.cta.order": "Order Now",
+    "hero.price": "Distribution paused",
+    "hero.price.note": "If you are seriously interested, please contact Zalo: 0868287651",
+    "hero.cta.order": "Contact Zalo",
     "hero.cta.learn": "Learn More",
 
     // Value Props
@@ -246,11 +246,11 @@ const translations = {
     "how.4.desc": "Connect your platforms and let OpenClawBox automate 24/7!",
 
     // Pricing
-    "pricing.title": "Order Now",
-    "pricing.subtitle": "One-time investment, own your AI Agent forever",
+    "pricing.title": "Openclaw-box distribution paused",
+    "pricing.subtitle": "Openclaw-box distribution has been paused.",
     "pricing.name": "OpenClawBox",
-    "pricing.price": "2,999,000₫",
-    "pricing.period": "One-time payment • Free shipping",
+    "pricing.price": "Distribution paused",
+    "pricing.period": "If you are seriously interested, please contact Zalo: 0868287651",
     "pricing.feature.1": "Mini PC Intel Celeron J1800, 4GB RAM, 32GB mSATA",
     "pricing.feature.2": "OpenClawBox AI Agent pre-configured",
     "pricing.feature.3": "11 specialized AI Agent modules",
@@ -258,7 +258,7 @@ const translations = {
     "pricing.feature.5": "12-month hardware warranty",
     "pricing.feature.6": "Free technical support",
     "pricing.feature.7": "Lifetime AI Agent updates",
-    "pricing.cta": "Order Now",
+    "pricing.cta": "Contact Zalo",
     "pricing.contact": "Contact:",
 
     // FAQ
@@ -280,10 +280,10 @@ const translations = {
     "faq.7.a": "Free shipping nationwide. Delivery: 2-3 days (Hanoi/HCM), 3-5 days (other provinces).",
 
     // CTA
-    "cta.title": "Ready to Automate?",
-    "cta.text": "Join hundreds of businesses operating with OpenClawBox AI Agent.<br>Pre-configured, ready to deploy — Only 2,999,000₫",
-    "cta.order": "Order Now",
-    "cta.consult": "Free Consultation",
+    "cta.title": "Openclaw-box distribution paused",
+    "cta.text": "Openclaw-box distribution has been paused.<br>If you are seriously interested, please contact Zalo: 0868287651",
+    "cta.order": "Contact Zalo",
+    "cta.consult": "Zalo consultation",
 
     // Footer
     "footer.tagline": "AI Agent for Business. Pre-configured on Mini PC. 24/7 Automation.",
